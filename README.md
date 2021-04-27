@@ -7,6 +7,6 @@ Dependencies needed to run Flask app:
 
 How to run the Flask app:                                                                                               
 * open terminal or powershell
-* cd to root folder
+* cd to the flaskapp folder
 * run command ```python app.py```
 * navigate to ```localhost:5000``` in your browser 
