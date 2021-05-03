@@ -13,6 +13,14 @@
         <div class="container">
             <div class="main">
                 <h1>Subscriptions</h1>
+                <div class="buttons">
+                    <button id=all-btn>All()</button>
+                    <button id=active-btn>Active()</button>
+                    <button id=cancelled-btn>Cancelled()</button>
+                    <button id=trash-btn>Trash()</button>
+                    <button id=export-btn>Export</button>
+                </div>
+
                 <table>
                     <tr>
                         <th>Status</th>
@@ -20,15 +28,28 @@
                         <th>Cost</th>
                         <th>Next Billed Date</th>
                         <th></th>
-                      </tr>
+                    </tr>
+
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th><button id=delete-btn>delete</button>
+                            <button onclick="window.location.href='note.html';" id=notes-btn>notes</button>
+                            <button onclick="window.location.href='new.html';" id=edit-btn>edit</button>
+                        </th>
+
+                    </tr>
                 </table>
             </div>
             <div class="side-bar">
-                <li><a href="" style = "text-decoration: none; color: white;" id=subscriptions>Subscriptions</a></li>
-                <li><a href="" style = "text-decoration: none; color: white;" id=newSubscriptions> New Subscripion</a></li>
-                <li><a href=""  style = "text-decoration: none; color: white;"id=profile>Profile</a></li>
+                <li><a href="" style="text-decoration: none; color: white;" id=subscriptions>Subscriptions</a></li>
+                <li><a href="new.html" style="text-decoration: none; color: white;" id=newSubscriptions> New
+                        Subscripion</a></li>
+                <li><a href="" style="text-decoration: none; color: white;" id=profile>Profile</a></li>
             </div>
- 
+
 
 
             <script src="../static/app.js"></script>
