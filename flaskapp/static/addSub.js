@@ -35,7 +35,7 @@ function newSubscription(){
 // INPUT: none
 // OUTPUT: none 
 function updateTable(){
-    localStorage["listOfSubs"] = listOfSubs
+    localStorage.setItem("subs",JSON.stringify(listOfSubs))
 }
 
 /* Given a subscription object, only push to listOfSubs global if it's unique (name/cost check only) */
@@ -75,11 +75,4 @@ function createSub(name, cost, period, date){
     return sub
 }
 
-
-/* Given a Subscription object, convert it to a JSON object and return */
-// INPUT: Subscription (Object)
-// OUTPUT: JSON Object (string)
-function convertToJSON(subObject){
-    return JSON.stringify(subObject)
-}
 
