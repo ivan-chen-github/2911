@@ -12,12 +12,32 @@ site_root = os.path.realpath(os.path.dirname(__file__))
 json_url = os.path.join(site_root, 'subs.json')
 
 @app.route("/")
-def home():
+def landing_page():
     """
-    Main route that displays homepage of web-app
+    Starting route that displays the main page
     """
     return render_template('index.html')
 
+@app.route("/index.html")
+def home():
+    """
+    Route for returning to homepage
+    """
+    return render_template('index.html')
+
+@app.route("/new.html")
+def new():
+    """
+    Route that displays new subscription page
+    """
+    return render_template('new.html')
+
+# @app.route("note.html")
+# def note():
+#     """
+#     Route that displays notes
+#     """
+#     return render_template('note.html')
 
 @app.route('/addsub', methods=['POST'])
 def addsub():
