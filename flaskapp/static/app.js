@@ -14,11 +14,34 @@ let submitBtn = document.querySelector("#submit-button")
 ----------------------------------------------------------------------------*/
 submitBtn.addEventListener("click",newSubscription)
 
+
+
+
+/* FUNCTIONS / METHODS
+----------------------------------------------------------------------------*/
+
 /* Creates a new subscription. Implementation for new subscription button */
 // INPUT: none
 // OUTPUT: none 
 function newSubscription(){
     let name = document.querySelector("#subscription-form").value
+    let cost = document.querySelector("#cost-form").value
+    let period = getPeriod()
+    let date = document.querySelector("#billedDate").value
+    listOfSubs.push(createSub(name,cost,period,date))
+}
+
+/* Checks which radio button is selected and returns appropriate period as string */
+// INPUT: name(string) cost(float) period(string) date(Date)
+// OUTPUT: "yearly" or "monthly". "monthly" is default
+function getPeriod(){
+    result = "monthly"
+    let yearly = document.querySelector("#yearly").checked
+    let monthly = document.querySelector("#monthly").checked
+    if (yearly) result = "yearly"
+    else if (monthly) result = "monthly"
+    return result
+
 }
 
 /* Creates a Subscription Object and returns its reference. */
