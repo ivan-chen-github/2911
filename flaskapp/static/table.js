@@ -37,7 +37,6 @@ function insertEntry(sub){
 function addButtons(row){
     let cell = row.insertCell(4)
     cell.appendChild(addDeleteButton())
-    let deleteBtn = "<button id=delete-btn>delete</button>"
     let notesBtn = "<button onclick=\"window.location.href='note.html';\" id=notes-btn>notes</button>"
     let editBtn = "<button onclick=\"window.location.href='new.html';\" id=edit-btn>edit</button>"
     cell.insertAdjacentHTML("afterbegin",notesBtn + editBtn)
@@ -64,5 +63,5 @@ function removeRow(event){
 }
 
 function removeSub(){
-    
+
 }
