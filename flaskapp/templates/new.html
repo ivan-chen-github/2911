@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../static/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
+    <script src="../static/addSub.js" defer></script>
 </head>
 
 <body>
@@ -15,15 +16,16 @@
                 <h1> Add New Subscription</h1>
                 <h1>Subscription Form</h1>
                 <form action ="">
-                    <input type="text" name="subscription-form" placeholder="Subscription Name" />
-                    <input type="text" name="cost-form" placeholder="Cost" />
-                    <input type="radio" id="occurence-form" name="occurence" value="yearly">
-                    <label for="yearly">yearly</label><br>
-                    <input type="radio" id="occurence" name="occurence" value="monthly">
+                    <input type="text" id="subscription-form" placeholder="Subscription Name" />
+                    <input type="text" id="cost-form" placeholder="Cost" />
+                    <input type="radio" id="monthly" name="occurence" value="monthly" checked="checked">
                     <label for="monthly">monthly</label><br>
+                    <input type="radio" id="yearly" name="occurence" value="yearly">
+                    <label for="yearly">yearly</label><br>         
+                    
                     <p>Next Billed Date</p>
                     <input type="date" id="billedDate" name="date">
-                    <input type="submit" value="Send" />
+                    <input type="button" id="submit-button" value="Send" />
                 </form>
             </div>
             <div class="side-bar">
