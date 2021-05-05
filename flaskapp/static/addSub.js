@@ -29,6 +29,16 @@ function newSubscription(){
     let sub = createSub(name,cost,period,date)
     addSubsList(sub)
     updateTable()
+
+    // Send listofSubs to Flask <--- added this
+    $.post( "http://127.0.0.1:5000/addsub", {
+        sub_data: (JSON.stringify(listOfSubs))
+    });
+
+    // // Get subs from Flask <--- not sure if this works yet
+    // $.get("http://127.0.0.1:5000/data", function(data) {
+    //     console.log($.parseJSON(data))
+    // })
 }
 
 /* adds listOfSubs to local storage */

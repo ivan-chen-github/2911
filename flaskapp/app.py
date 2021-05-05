@@ -50,7 +50,7 @@ def addsub():
     with open('subs.json', mode='w') as f:
         data.append(json.loads(subdata))
         json.dump(data, f)
-    return f'', 200
+    return f'surprise!', 200
 
 
 @app.route('/data', methods=['GET'])
