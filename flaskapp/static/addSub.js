@@ -4,7 +4,7 @@
 ----------------------------------------------------------------------------*/
 let listOfSubs = []
 let submitBtn = document.querySelector("#submit-button")
-
+let id = retrieveID()
 
 
 /* EVENT LISTENERS
@@ -21,21 +21,35 @@ submitBtn.addEventListener("click",newSubscription)
 // INPUT: none
 // OUTPUT: none 
 function newSubscription(){
+    let uid = id
+    id++
     let name = document.querySelector("#subscription-form").value
     let cost = parseFloat(document.querySelector("#cost-form").value)
     let period = getPeriod()
     let date = document.querySelector("#billedDate").value
-
-    let sub = createSub(name,cost,period,date)
+    let sub = createSub(id,name,cost,period,date)
     addSubsList(sub)
-    updateTable()
+    updateStorage()
 }
 
-/* adds listOfSubs to local storage */
+/* adds listOfSubs and id to local storage */
 // INPUT: none
 // OUTPUT: none 
-function updateTable(){
+function updateStorage(){
     localStorage.setItem("subs",JSON.stringify(listOfSubs))
+    localStorage.setItem("id",id)
+}
+
+/* Retrieve ID from local storage and sets it global. If it doesn't exist,
+set id = 0 */
+// INPUT: none
+// OUTPUT: none 
+function retrieveID(){
+    let result = localStorage.getItem("Id")
+    if (!result){
+        return 0
+    }
+    else {return result}
 }
 
 /* Given a subscription object, only push to listOfSubs global if it's unique (name/cost check only) */
@@ -44,8 +58,8 @@ function updateTable(){
 function addSubsList(sub){
     let exists = 0
     for (e of listOfSubs){
-        if(e.name === sub.name && e.cost == sub.cost)
-        exists = 1
+        if(e.name === sub.name && e.cost == sub.cost){
+        exists = 1}
     }
     if (!exists) listOfSubs.push(sub)
 }
@@ -63,10 +77,11 @@ function getPeriod(){
 }
 
 /* Creates a Subscription Object and returns its reference. */
-// INPUT: name(string) cost(float) period(string) date(string)
+// INPUT: id(number) name(string) cost(float) period(string) date(string)
 // OUTPUT: Subscription(object)
-function createSub(name, cost, period, date){
+function createSub(id,name, cost, period, date){
     let sub = {
+        id,
         name,
         cost,
         period,
