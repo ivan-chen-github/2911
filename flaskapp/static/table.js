@@ -67,14 +67,13 @@ function removeRow(event){
 // INPUT: none
 // OUTPUT: none
 function removeSub(row){
-    let id = row.cells[0]
+    let id = parseInt(row.cells[0].innerHTML)
     for (const e of listOfSubs){
         if(e.id === id){
             i = listOfSubs.indexOf(e)
             listOfSubs.splice(e,1)
         }
     }
-    console.log("hi)")
     updateStorage()
 
 }
