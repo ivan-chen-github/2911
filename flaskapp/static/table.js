@@ -92,4 +92,13 @@ function removeSub(row){
 // OUTPUT: none 
 function updateStorage(){
     localStorage.setItem("subs",JSON.stringify(listOfSubs))
+    // Send listofSubs to Flask <--- added this
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:5000/addsub',
+        data: JSON.stringify({subs:listOfSubs}),
+        success: function(data) { alert('data: ' + data); },
+        contentType: "application/json",
+        dataType: 'json'
+    });
 }
