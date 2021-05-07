@@ -32,6 +32,6 @@ def test_rm_json():
     # check if the file has been rewritten
     with open(json_url, mode='r') as f:
         data = json.load(f)
-        # print(data)
+
         assert data == []
 

@@ -1,3 +1,1 @@
-
-{"subs": [{"id": 6, "name": "Amazon Prime", "cost": 65, "period": "monthly", "date": "2021-05-06"}, {"id": 7, "name": "Telus Bill", "cost": 80, "period": "monthly", "date": "2021-05-06"}, {"id": 8, "name": "Koodo", "cost": 40, "period": "monthly", "date": "2021-05-25"}]}
-
+{"subs": [{"cost": 65, "date": "2021-05-06", "id": 6, "name": "Amazon Prime", "period": "monthly"}, {"cost": 80, "date": "2021-05-06", "id": 7, "name": "Telus Bill", "period": "monthly"}, {"cost": 99, "date": "2021-05-25", "id": 8, "name": "Koodo", "period": "monthly"}]}

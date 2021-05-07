@@ -12,6 +12,9 @@ def to_json(file, payload):
     :param: payload: data to be written to the file
     :type: str
     """
+
+    # with open(file, mode='r+') as json_file:
+    #     json.dump(payload, json_file)
     with open(file) as json_file:
         data = json.load(json_file)
     with open(file, mode='r+') as f:
