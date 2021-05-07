@@ -2,9 +2,9 @@
 
 /* GLOBALS 
 ----------------------------------------------------------------------------*/
-let listOfSubs = []
+let listOfSubs = getSubData()
 let submitBtn = document.querySelector("#submit-button")
-let id = retrieveID()
+let id = parseInt(retrieveID())
 
 
 /* EVENT LISTENERS
@@ -16,6 +16,15 @@ submitBtn.addEventListener("click",newSubscription)
 
 /* FUNCTIONS / METHODS
 ----------------------------------------------------------------------------*/
+
+
+function getSubData(){
+        // // Get subs from Flask <--- not sure if this works yet
+        $.get("http://127.0.0.1:5000/data").done(function(data){
+            listOfSubs = data["subs"]
+            
+        })
+}
 
 /* Creates a new subscription. Implementation for new subscription button */
 // INPUT: none
@@ -54,7 +63,7 @@ set id = 0 */
 // INPUT: none
 // OUTPUT: none 
 function retrieveID(){
-    let result = localStorage.getItem("Id")
+    let result = localStorage.getItem("id")
     if (!result){
         return 0
     }
