@@ -4,7 +4,7 @@ import os
 import ast
 
 root = os.path.dirname((os.path.dirname(__file__)))
-json_url = os.path.join(root, 'tests/test.json')
+json_url = os.path.join(root, 'subs.json')
 
 def test_landing_page(app, client):
     """test '/' route for 200 ok"""

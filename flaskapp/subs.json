@@ -1,1 +1,1 @@
-[{"id": 1, "name": "dummy", "cost": 9.99, "period": "monthly", "date": "2021-01-01"}]
+[{"id": 1, "name": "dummy", "cost": 9.99, "period": "monthly", "date": "2021-01-01"}, {"id": 2, "name": "test1", "cost": 10.99, "period": "monthly", "date": "2021-05-13"}]

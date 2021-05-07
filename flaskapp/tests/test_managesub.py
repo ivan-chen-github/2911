@@ -1,4 +1,4 @@
-from models.managesub import to_json
+from models.managesub import to_json, rm_json
 import pytest
 import os
 import json
@@ -24,17 +24,14 @@ def test_to_json():
         else:
             assert False
 
-# def test_rm_json():
-#     """ test if entry is cleared from file """
-#     # root = os.path.dirname((os.path.dirname(__file__)))
-#     # json_url = os.path.join(root, 'tests/test.json')
+def test_rm_json():
+    """ test if entry is cleared from file """
+    # remove dictionary with id 1
+    rm_json(json_url, 1)
 
-#     rm_json(json_url, 1)
-
-#     with open(json_url, mode='r') as f:
-#         print(f)
-#         if f == '[]':
-#             assert True
-#         else:
-#             assert False
+    # check if the file has been rewritten
+    with open(json_url, mode='r') as f:
+        data = json.load(f)
+        # print(data)
+        assert data == []
 

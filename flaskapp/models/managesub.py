@@ -14,13 +14,13 @@ def to_json(file, payload):
     """
     with open(file) as json_file:
         data = json.load(json_file)
-    with open(file, mode='w') as f:
+    with open(file, mode='r+') as f:
         data.append(json.loads(payload))
         json.dump(data, f)
 
 def rm_json(file, id):
     """
-    Opens file and deletes an entry based on id
+    Finds the dictionary matching the id and rewrites the file without that dictionary
 
     :param: file: file path
     :type: str
@@ -28,10 +28,13 @@ def rm_json(file, id):
     :param: id: id number
     :type: int
     """
-    with open(file) as json_file:
+    with open(file, mode='r') as json_file:
         data = json.load(json_file)
-    with open(file, mode='w') as f:
-        for index, d in enumerate(data):
-            if d["id"] == id:
-                print(d)
-                data.pop(index)
+        for i, d in enumerate(data):
+            if d['id'] == 1:
+                data.pop(i)
+
+    with open(file, mode='r+') as f:
+        f.seek(0)
+        f.truncate()
+        f.write(str(data))
