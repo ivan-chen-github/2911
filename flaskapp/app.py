@@ -1,11 +1,13 @@
 # Imported libraries
 from flask import Flask, render_template
 from flask import request
+from flask_cors import CORS
 import json
 import os
 
 # Flask app
 app = Flask(__name__)
+CORS(app)
 
 # Agnostic filepath for root directory
 site_root = os.path.realpath(os.path.dirname(__file__))
@@ -44,12 +46,9 @@ def addsub():
     """
     Writes subscription information to subs.json file
     """
-    subdata = request.form['sub_data']
-    with open(json_url) as json_file:
-        data = json.load(json_file)
+    subdata = request.json
     with open(json_url, mode='w') as f:
-        data.append(json.loads(subdata))
-        json.dump(data, f)
+        json.dump(subdata, f)
     return f'', 200
 
 
@@ -60,7 +59,7 @@ def data():
     """
     with open(json_url) as json_file:
         data = json.load(json_file)
-    return f'{data}'
+    return data
 
 if __name__ == "__main__":
     app.run()

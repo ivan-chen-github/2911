@@ -2,7 +2,17 @@
 ----------------------------------------------------------------------------*/
 let listOfSubs = JSON.parse(localStorage.getItem("subs"))
 let table = document.querySelector("table")
+let subdata = []
 
+
+
+
+    // // Get subs from Flask <--- not sure if this works yet
+    $.get("http://127.0.0.1:5000/data").done(function(data){
+        subdata = data["subs"]
+        console.log(subdata)
+    })
+    
 updateTable()
 
 /* Populates table with data from listOfSubs */

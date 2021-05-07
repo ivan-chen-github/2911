@@ -1,1 +1,1 @@
-[[{"name": "test1", "cost": 9.99, "period": "monthly", "date": "2021-05-07"}]]
+{"subs": [{"id": 1, "name": "Howdy", "cost": 12, "period": "monthly", "date": "2021-05-04"}]}
