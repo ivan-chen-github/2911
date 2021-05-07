@@ -51,6 +51,7 @@ def rm_json(file, id):
         # Write the new data from above to the file
         f.write(json.dumps(data))
 
+
 def rw_json(file, id):
     """
     Reads current apps.json file and rewrites the file with new values
@@ -61,7 +62,8 @@ def rw_json(file, id):
     :param: id: id number
     :type: int
     
-    Im assuming we will need another parameter involving the new file values...
+    Im assuming we could use another parameter involving the new file values...
+    or just write the new_dict to the subs.json (removing all the read file code in this)
     """
     # Create the new dict we will use to rewrite to the file
     new_dict = {}
@@ -90,6 +92,7 @@ def rw_json(file, id):
     # opens the subs.json file and writes the dictonary (same key) with the
     with open (file, mode='w') as new_json:
         json.dump(new_dict, new_json)
+
 
 def clear_json(file):
     """
