@@ -8,9 +8,8 @@ let id = parseInt(retrieveID())
 
 
 /* EVENT LISTENERS
-----------------------------------------------------------------------------*/
+---------------------------------------------------------------------------*/
 submitBtn.addEventListener("click",newSubscription)
-
 
 
 
