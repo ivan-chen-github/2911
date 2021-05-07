@@ -1,7 +1,7 @@
 # Imported libraries
 from flask import Flask, render_template, request
 from flask_cors import CORS
-from models.managesub import to_json
+from models.managesub import to_json, rm_json
 import json
 import os
 
@@ -49,9 +49,20 @@ def addsub():
     # request data
     subdata = request.json
     
-    # append data to JSON
-    with open(json_url, mode='w') as f:
-        json.dump(subdata, f)
+    # write data to JSON
+    to_json(json_url, subdata)
+    return f'', 200
+
+@app.route('/delsub', methods=['POST'])
+def delsub():
+    """
+    Deletes subscription entry from JSON based on id
+    """
+    # request id
+    id = request.json
+
+    # delete subscription entry
+    rm_json(json_url, id)
     return f'', 200
 
 

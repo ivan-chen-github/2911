@@ -13,13 +13,10 @@ def to_json(file, payload):
     :type: str
     """
 
-    # with open(file, mode='r+') as json_file:
-    #     json.dump(payload, json_file)
-    with open(file) as json_file:
-        data = json.load(json_file)
-    with open(file, mode='r+') as f:
-        data.append(json.loads(payload))
-        json.dump(data, f)
+    # Open file as write and dump JSON payload to file
+    with open(file, mode='w') as json_file:
+        json.dump(payload, json_file)
+
 
 def rm_json(file, id):
     """
@@ -31,13 +28,38 @@ def rm_json(file, id):
     :param: id: id number
     :type: int
     """
+
+    # Open file as read
     with open(file, mode='r') as json_file:
+        # Load the data as JSON data
         data = json.load(json_file)
-        for i, d in enumerate(data):
-            if d['id'] == 1:
-                data.pop(i)
+        # Get the values inside the JSON data and return the list of data
+        for list in data.values():
+            # For each dict in the list, enumerate it to get the index of each dict
+            for i, d in enumerate(list):
+                # if there is a dictionary with key "id" matching the id parameter
+                if d["id"] == id:
+                    # remove that dictionary from the list of dicts
+                    list.pop(i)
+
+    # Open file again as read/write
+    with open(file, mode='r+') as f:
+        # Go to the beginning of the file
+        f.seek(0)
+        # Delete the current data in the file
+        f.truncate()
+        # Write the new data from above to the file
+        f.write(json.dumps(data))
+
+
+def clear_json(file):
+    """
+    Opens file and clears all content
+
+    :param: file: file path
+    :type: str
+    """
 
     with open(file, mode='r+') as f:
         f.seek(0)
         f.truncate()
-        f.write(str(data))
