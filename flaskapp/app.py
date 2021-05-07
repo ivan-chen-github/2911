@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_cors import CORS
 from flask import request
 from models.managesub import to_json
+from flask_cors import CORS
 import json
 import os
 
@@ -47,12 +48,12 @@ def addsub():
     """
     Writes subscription information to subs.json file
     """
-    # request data
-    subdata = request.form['sub_data']
-    
-    # append data to JSON
-    to_json(json_url, subdata)
-
+ 
+    subdata = request.json
+#    # append data to JSON
+#     to_json(json_url, subdata)
+    with open(json_url, mode='w') as f:
+        json.dump(subdata, f)
     return f'', 200
 
 
@@ -63,7 +64,7 @@ def data():
     """
     with open(json_url) as json_file:
         data = json.load(json_file)
-    return f'{data}'
+    return data
 
 if __name__ == "__main__":
     app.run()

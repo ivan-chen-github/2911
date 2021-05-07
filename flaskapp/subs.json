@@ -1,1 +1,3 @@
-[{"id": 1, "name": "dummy", "cost": 9.99, "period": "monthly", "date": "2021-01-01"}, {"id": 2, "name": "test1", "cost": 10.99, "period": "monthly", "date": "2021-05-13"}]
+
+{"subs": [{"id": 6, "name": "Amazon Prime", "cost": 65, "period": "monthly", "date": "2021-05-06"}, {"id": 7, "name": "Telus Bill", "cost": 80, "period": "monthly", "date": "2021-05-06"}, {"id": 8, "name": "Koodo", "cost": 40, "period": "monthly", "date": "2021-05-25"}]}
+

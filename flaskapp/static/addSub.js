@@ -2,9 +2,9 @@
 
 /* GLOBALS 
 ----------------------------------------------------------------------------*/
-let listOfSubs = []
+let listOfSubs = getSubData()
 let submitBtn = document.querySelector("#submit-button")
-let id = retrieveID()
+let id = parseInt(retrieveID())
 
 
 /* EVENT LISTENERS
@@ -16,6 +16,15 @@ submitBtn.addEventListener("click",newSubscription)
 
 /* FUNCTIONS / METHODS
 ----------------------------------------------------------------------------*/
+
+
+function getSubData(){
+        // // Get subs from Flask <--- not sure if this works yet
+        $.get("http://127.0.0.1:5000/data").done(function(data){
+            listOfSubs = data["subs"]
+            
+        })
+}
 
 /* Creates a new subscription. Implementation for new subscription button */
 // INPUT: none
@@ -30,17 +39,6 @@ function newSubscription(){
     let sub = createSub(id,name,cost,period,date)
     addSubsList(sub)
     updateStorage()
-
-    // Send sub to Flask
-    $.post( "http://127.0.0.1:5000/addsub", {
-        sub_data: (JSON.stringify(sub))
-    });
-
-    // // Get subs from Flask <--- not sure if this works yet
-    // $.get("http://127.0.0.1:5000/data", function(data) {
-    //     console.log($.parseJSON(data))
-    // })
-
 }
 
 /* adds listOfSubs and id to local storage */
@@ -49,6 +47,15 @@ function newSubscription(){
 function updateStorage(){
     localStorage.setItem("subs",JSON.stringify(listOfSubs))
     localStorage.setItem("id",id)
+    // Send listofSubs to Flask <--- added this
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:5000/addsub',
+        data: JSON.stringify({subs:listOfSubs}),
+        success: function(data) { alert('data: ' + data); },
+        contentType: "application/json",
+        dataType: 'json'
+    });
 }
 
 /* Retrieve ID from local storage and sets it global. If it doesn't exist,
@@ -56,7 +63,7 @@ set id = 0 */
 // INPUT: none
 // OUTPUT: none 
 function retrieveID(){
-    let result = localStorage.getItem("Id")
+    let result = localStorage.getItem("id")
     if (!result){
         return 0
     }
@@ -70,9 +77,12 @@ function addSubsList(sub){
     let exists = 0
     for (e of listOfSubs){
         if(e.name === sub.name && e.cost == sub.cost){
-        exists = 1}
+            exists = 1         
+        }
     }
-    if (!exists) listOfSubs.push(sub)
+    if (!exists) {
+        listOfSubs.push(sub)  
+    }
 }
 
 /* Checks which radio button is selected and returns appropriate period as string */
