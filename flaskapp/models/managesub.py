@@ -51,6 +51,45 @@ def rm_json(file, id):
         # Write the new data from above to the file
         f.write(json.dumps(data))
 
+def rw_json(file, id):
+    """
+    Reads current apps.json file and rewrites the file with new values
+
+    :param: file: file path
+    :type: str
+
+    :param: id: id number
+    :type: int
+    
+    Im assuming we will need another parameter involving the new file values...
+    """
+    # Create the new dict we will use to rewrite to the file
+    new_dict = {}
+    # Open file as read
+    with open (file, mode='r') as f:
+        # Load the data as JSON data into variable datastore
+        datastore = json.load(f)
+        # Get the values inside the JSON data and return the list of data
+        for list in datastore.values():
+            # Create the list that will contain all the new rewritten dict values
+            new_values_list = []
+            # For each dict in the list, loops through each dict line
+            for d in list:
+                # if there is a dictionary with key "id" matching the id value
+                if d["id"] == id:
+                    # For each key and value in that matched id, loop through each key & value
+                    for key, value in d.items():
+                        # we can go through each value and change whatever needs to be changed
+                        pass
+
+                # after exiting the prev loop, it will append the new dict values into a list
+                new_values_list.append(d)
+    
+    # this creates a new dict with the same 'subs' as key with the new values
+    new_dict['subs'] = new_values_list
+    # opens the subs.json file and writes the dictonary (same key) with the
+    with open (file, mode='w') as new_json:
+        json.dump(new_dict, new_json)
 
 def clear_json(file):
     """
