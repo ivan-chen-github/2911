@@ -31,9 +31,9 @@ function newSubscription(){
     addSubsList(sub)
     updateStorage()
 
-    // Send listofSubs to Flask <--- added this
+    // Send sub to Flask
     $.post( "http://127.0.0.1:5000/addsub", {
-        sub_data: (JSON.stringify(listOfSubs))
+        sub_data: (JSON.stringify(sub))
     });
 
     // // Get subs from Flask <--- not sure if this works yet
