@@ -45,12 +45,12 @@ def addsub():
     Writes subscription information to subs.json file
     """
     subdata = request.form['sub_data']
-    with open('subs.json') as json_file:
+    with open(json_url) as json_file:
         data = json.load(json_file)
-    with open('subs.json', mode='w') as f:
+    with open(json_url, mode='w') as f:
         data.append(json.loads(subdata))
         json.dump(data, f)
-    return f'surprise!', 200
+    return f'', 200
 
 
 @app.route('/data', methods=['GET'])
