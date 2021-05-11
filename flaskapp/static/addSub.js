@@ -2,7 +2,7 @@
 
 /* GLOBALS 
 ----------------------------------------------------------------------------*/
-let listOfSubs = getServerData()
+let listOfSubs = []
 let submitBtn = document.querySelector("#submit-button")
 let id = 0
 
@@ -15,10 +15,9 @@ submitBtn.addEventListener("click",newSubscription)
 
 /* FUNCTIONS / METHODS
 ----------------------------------------------------------------------------*/
-
+getServerData()
 
 function getServerData(){
-        // // Get subs from Flask <--- not sure if this works yet
         $.get("http://127.0.0.1:5000/data").done(function(data){
             listOfSubs = data["subs"]
             let uid = data["id"]
@@ -42,11 +41,11 @@ function newSubscription(){
     updateStorage()
 }
 
-/* adds listOfSubs and id to local storage */
+/* adds listOfSubs and id to Flask via HTTP POST */
 // INPUT: none
 // OUTPUT: none 
 function updateStorage(){
-    // Send listofSubs to Flask <--- added this
+    // Send listofSubs to Flask
     $.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:5000/addsub',

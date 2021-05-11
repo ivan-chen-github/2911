@@ -3,16 +3,20 @@
 let listOfSubs = []
 let table = document.querySelector("table")
 let subdata = []
+let id = 0
 
 
+getServerData()
 
-
-    // // Get subs from Flask <--- not sure if this works yet
+function getServerData(){
     $.get("http://127.0.0.1:5000/data").done(function(data){
         listOfSubs = data["subs"]
+        let uid = data["id"]
+        if (!uid) id = 0
+        else id = uid
         updateTable()
     })
-    
+}
 
 
 /* Populates table with data from listOfSubs */
@@ -79,24 +83,24 @@ function removeSub(row){
     let id = parseInt(row.cells[0].innerHTML)
     for (const e of listOfSubs){
         if(e.id === id){
+            console.log(e.id + " " + id)
             i = listOfSubs.indexOf(e)
-            listOfSubs.splice(e,1)
+            listOfSubs.splice(i,1)
         }
     }
     updateStorage()
 
 }
 
-/* adds listOfSubs and id to local storage */
+/* adds listOfSubs and id to Flask via HTTP POST */
 // INPUT: none
 // OUTPUT: none 
 function updateStorage(){
-    localStorage.setItem("subs",JSON.stringify(listOfSubs))
-    // Send listofSubs to Flask <--- added this
+    // Send listofSubs to Flask
     $.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:5000/addsub',
-        data: JSON.stringify({subs:listOfSubs}),
+        data: JSON.stringify({subs:listOfSubs,id:id}),
         success: function(data) { alert('data: ' + data); },
         contentType: "application/json",
         dataType: 'json'
