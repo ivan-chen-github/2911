@@ -4,9 +4,20 @@ let listOfSubs = []
 let table = document.querySelector("table")
 let subdata = []
 let id = 0
-
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
 
 getServerData()
+
+
+/* EVENT LISTENERS
+---------------------------------------------------------------------------*/
+
+modal.addEventListener("click",closeModalBtn)
+window.addEventListener("click",closeModalWindow)
+
+/* FUNCTIONS / METHODS
+----------------------------------------------------------------------------*/
 
 function getServerData(){
     $.get("http://127.0.0.1:5000/data").done(function(data){
@@ -17,6 +28,20 @@ function getServerData(){
         updateTable()
     })
 }
+
+
+/* Hides the modal popup box*/ 
+function closeModalBtn(){
+    modal.style.display = "none"
+}
+
+
+/* Hides the modal popup if background is clicked*/
+function closeModalWindow(event){
+    if(event.target == modal){
+      modal.style.display = "none"
+    }
+  }
 
 
 /* Populates table with data from listOfSubs */
@@ -51,16 +76,35 @@ function insertEntry(sub){
 function addButtons(row){
     let cell = row.insertCell(4)
     cell.appendChild(createDeleteBtn())
-    // let editBtn = "<button onclick=\"window.location.href='new.html';\" id=edit-btn>edit</button>"
+    cell.appendChild(createEditBtn())
     // cell.insertAdjacentHTML("afterbegin",notesBtn + editBtn)
 }
+
+/* Creates an edit button and returns its reference */
+// INPUT: none
+// OUTPUT: <button> (HTML)
+function createEditBtn(){
+    let button = document.createElement("button")
+    button.class = "edit-btn"
+    button.innerHTML = "edit"
+    button.addEventListener("click",editRow)
+    return button
+}
+
+
+
+function editRow(){
+    modal.style.display = "block"
+}
+
+
 
 /* Creates a delete button and returns its reference */
 // INPUT: none
 // OUTPUT: <button> (HTML)
 function createDeleteBtn(){
     let button = document.createElement("button")
-    button.id = "delete-btn"
+    button.class = "delete-btn"
     button.innerHTML = "delete"
     button.addEventListener("click",removeRow)
     return button
