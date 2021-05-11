@@ -103,7 +103,7 @@ function createEditBtn(){
     let button = document.createElement("button")
     button.class = "edit-btn"
     button.innerHTML = "edit"
-    button.addEventListener("click",editRow)
+    button.addEventListener("click",editModal)
     return button
 }
 
@@ -127,7 +127,6 @@ function createDeleteBtn(){
 // INPUT: none
 // OUTPUT: none 
 function newSubscription(){
-    let uid = id
     id++
     let name = document.querySelector("#subscription-form").value
     let cost = parseFloat(document.querySelector("#cost-form").value)
@@ -136,6 +135,7 @@ function newSubscription(){
     let sub = createSub(id,name,cost,period,date)
     addSubsList(sub)
     updateStorage()
+    updateTable()
 }
 
 /* Checks which radio button is selected and returns appropriate period as string */
