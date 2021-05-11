@@ -139,6 +139,9 @@ input[type=submit]:hover {
     background-color: #6e6a86;
   }
 
+/* Modal Popup
+----------------------------------------------------------------------------*/
+
   .modal {
     display: none;
     position: fixed; 
@@ -166,9 +169,10 @@ input[type=submit]:hover {
     color: lightgray; 
     font-size: 24px;  
     font-weight: bold;
+    cursor: pointer;
   }
   .close-btn:hover {
-    color: darkgray;
+    color: rgb(44, 44, 44);
   }
   @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 

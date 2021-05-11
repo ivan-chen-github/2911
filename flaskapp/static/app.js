@@ -1,24 +1,29 @@
 /* GLOBALS 
 ----------------------------------------------------------------------------*/
 let listOfSubs = []
-let table = document.querySelector("table")
 let subdata = []
 let id = 0
+
+let table = document.querySelector("table")
 let modal = document.querySelector(".modal")
 let closeBtn = document.querySelector(".close-btn")
-
+let submitBtn = document.querySelector("#submit-button")
+let newSubBtn = document.querySelector("#newSubscriptions")
 getServerData()
 
 
 /* EVENT LISTENERS
 ---------------------------------------------------------------------------*/
 
-modal.addEventListener("click",closeModalBtn)
+closeBtn.addEventListener("click",closeModalBtn)
 window.addEventListener("click",closeModalWindow)
+submitBtn.addEventListener("click",newSubscription)
+newSubBtn.addEventListener("click",addModal)
 
-/* FUNCTIONS / METHODS
+/* FUNCTIONS
 ----------------------------------------------------------------------------*/
 
+/* HTTTP GET Request for latest data. Updates globals. */ 
 function getServerData(){
     $.get("http://127.0.0.1:5000/data").done(function(data){
         listOfSubs = data["subs"]
@@ -29,6 +34,15 @@ function getServerData(){
     })
 }
 
+/* Displays the modal popup box*/ 
+function editModal(){
+    modal.style.display = "block"
+}
+
+/* Displays the modal popup box*/ 
+function addModal(){
+    modal.style.display = "block"
+}
 
 /* Hides the modal popup box*/ 
 function closeModalBtn(){
@@ -38,21 +52,23 @@ function closeModalBtn(){
 
 /* Hides the modal popup if background is clicked*/
 function closeModalWindow(event){
-    if(event.target == modal){
+    if(event.target === modal){
       modal.style.display = "none"
     }
   }
 
 
 /* Populates table with data from listOfSubs */
-// INPUT: Subscription(object)
-// OUTPUT: none 
 function updateTable(){
     for (const sub of listOfSubs){
         insertEntry(sub)
     }
 
 }
+
+
+/* TABLE
+----------------------------------------------------------------------------*/
 
 /* Inserts a row according to the given Subscription for the table */
 // INPUT: Subscription(object)
@@ -92,13 +108,6 @@ function createEditBtn(){
 }
 
 
-
-function editRow(){
-    modal.style.display = "block"
-}
-
-
-
 /* Creates a delete button and returns its reference */
 // INPUT: none
 // OUTPUT: <button> (HTML)
@@ -109,6 +118,69 @@ function createDeleteBtn(){
     button.addEventListener("click",removeRow)
     return button
 }
+
+
+/* ADD SUB
+----------------------------------------------------------------------------*/
+
+/* Creates a new subscription. Implementation for new subscription button */
+// INPUT: none
+// OUTPUT: none 
+function newSubscription(){
+    let uid = id
+    id++
+    let name = document.querySelector("#subscription-form").value
+    let cost = parseFloat(document.querySelector("#cost-form").value)
+    let period = getPeriod()
+    let date = document.querySelector("#billedDate").value
+    let sub = createSub(id,name,cost,period,date)
+    addSubsList(sub)
+    updateStorage()
+}
+
+/* Checks which radio button is selected and returns appropriate period as string */
+// INPUT: name(string) cost(float) period(string) date(Date)
+// OUTPUT: "yearly" "monthly"
+function getPeriod(){
+    result = "monthly"
+    let yearly = document.querySelector("#yearly").checked
+    let monthly = document.querySelector("#monthly").checked
+    if (yearly) result = "yearly"
+    else if (monthly) result = "monthly"
+    return result
+}
+
+/* Creates a Subscription Object and returns its reference. */
+// INPUT: id(number) name(string) cost(float) period(string) date(string)
+// OUTPUT: Subscription(object)
+function createSub(id,name, cost, period, date){
+    let sub = {
+        id,
+        name,
+        cost,
+        period,
+        date
+    }
+    return sub
+}
+
+/* Given a subscription object, only push to listOfSubs global if it's unique (name/cost check only) */
+// INPUT: Subscription(object)
+// OUTPUT: none 
+function addSubsList(sub){
+    let exists = 0
+    for (e of listOfSubs){
+        if(e.name === sub.name && e.cost == sub.cost){
+            exists = 1         
+        }
+    }
+    if (!exists) {
+        listOfSubs.push(sub)  
+    }
+}
+
+/* DELETE SUB
+----------------------------------------------------------------------------*/
 
 /* Deletes a subscription row according to click event */
 // INPUT: none
@@ -150,3 +222,6 @@ function updateStorage(){
         dataType: 'json'
     });
 }
+
+
+
