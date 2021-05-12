@@ -5,7 +5,8 @@ let subdata = []
 let id = 0
 
 let table = document.querySelector("table")
-let modal = document.querySelector(".modal")
+let newSubModal = document.querySelector("#new-sub-modal")
+let editModal = document.querySelector("#edit-modal")
 let closeBtn = document.querySelector(".close-btn")
 let submitBtn = document.querySelector("#submit-button")
 let newSubBtn = document.querySelector("#newSubscriptions")
@@ -18,7 +19,7 @@ getServerData()
 closeBtn.addEventListener("click",closeModalBtn)
 window.addEventListener("click",closeModalWindow)
 submitBtn.addEventListener("click",newSubscription)
-newSubBtn.addEventListener("click",addModal)
+newSubBtn.addEventListener("click",displaySubModal)
 
 /* FUNCTIONS
 ----------------------------------------------------------------------------*/
@@ -35,25 +36,25 @@ function getServerData(){
 }
 
 /* Displays the modal popup box*/ 
-function editModal(){
-    modal.style.display = "block"
+function displayEditModal(){
+    editModal.style.display = "block"
 }
 
 /* Displays the modal popup box*/ 
-function addModal(){
-    modal.style.display = "block"
+function displaySubModal(){
+    newSubModal.style.display = "block"
 }
 
 /* Hides the modal popup box*/ 
 function closeModalBtn(){
-    modal.style.display = "none"
+    newSubModal.style.display = "none"
 }
 
 
 /* Hides the modal popup if background is clicked*/
 function closeModalWindow(event){
-    if(event.target === modal){
-      modal.style.display = "none"
+    if(event.target === newSubModal){
+        newSubModal.style.display = "none"
     }
   }
 
@@ -103,7 +104,7 @@ function createEditBtn(){
     let button = document.createElement("button")
     button.class = "edit-btn"
     button.innerHTML = "edit"
-    button.addEventListener("click",editModal)
+    button.addEventListener("click",displayEditModal)
     return button
 }
 
@@ -199,7 +200,6 @@ function removeSub(row){
     let id = parseInt(row.cells[0].innerHTML)
     for (const e of listOfSubs){
         if(e.id === id){
-            console.log(e.id + " " + id)
             i = listOfSubs.indexOf(e)
             listOfSubs.splice(i,1)
         }

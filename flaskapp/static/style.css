@@ -1,146 +1,200 @@
+/* Overall */
+* {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
 body {
-    background-color: #c5c9ce;
-}
-
-.container{
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 15% 85%;
-    grid-template-areas: 
-    "side main"
-    "side main"
-    "side main "; 
- 
-}
-.grid-container{
-    display: grid;
-    grid-template-rows: 20% 1fr;
-    grid-template-columns: 15% 85%;
-    grid-template-areas: 
-    "side header"
-    "side main"
-    "side main "; 
- 
-}
-
-.side-bar {
-    grid-area: side;
-    background-color: black;
-    height: 100vh;
-   
-}
-
-.grid-container div > li {
-    text-align: center;
-    margin-top: 80px;
-    margin-bottom:80px;
-    font-family: 'Original Surfer', cursive;
-}
-.grid-container div > h1 {
-    margin-left: 30px;
-    font-family: 'Original Surfer', cursive;
-    color: green
-}
-
-.grid-container{
-    grid-area: main;
-}
-
-.container div > li {
-    text-align: center;
-    margin-top: 80px;
-    margin-bottom:80px;
-    font-family: 'Original Surfer', cursive;
-}
-.container div > h1 {
-    margin-left: 30px;
-    font-family: 'Original Surfer', cursive;
-    color: green
-}
-
-table {
-    font-family: 'Original Surfer', cursive;
-    border-collapse: collapse;
-    width: 95%;
-    margin-left: 30px;
-}
-
-td, th {
-    border: 1px solid black;
-    text-align: center;
-    width: 50px;
-    padding: 8px;
     
-  }
-form {
-    display:inline-block;
+  --main: #283149;
+  --text: #e9f4f8;
+  --hover: #eec4c4;
+  --nav: #404b69; 
+  --label: #f1ca89;
+
+  background-color: var(--main);
 }
 
-h1{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+/* Clickable
+----------------------  */
+a{
+  text-decoration: none;
 }
 
-input[type=text], select {
-    width: 100%;
-    padding: 12px;
-    box-sizing: border-box;
-    border: 1px solid #f2e9de;
-    border-radius: 4px;
-    resize: vertical;
-    width: 100%;
-    height: 20%;
-    margin-bottom: 20px;
-    margin-left: 80%;
-  }
-input[type=radio], select {
-      margin-left: 80%;
-      margin-bottom: 20px; 
-  }
-
-input[type=date], select {
-    margin-left: 80%;
-    margin-bottom: 20px; 
+a:visited {
+  color: text;
 }
 
-p{
-    margin-left: 75%;
+a:hover, button:hover {
+  color: var(--hover);
 }
 
 button {
-    border: none;
-    text-decoration: underline;
-    background: transparent;
-    color:black;
-    font-family: 'Montserrat', sans-serif;
-}
-.buttons {
-    border: none;
-    background: transparent;
-    color:blue;
-    font-family: 'Montserrat', sans-serif;
+  border: none;
+  background: none;
+  outline: none;
 }
 
-#submit-button {
-    width: 100%;
-    padding: 12px;
-    box-sizing: border-box;
-    border: 1px solid #f2e9de;
-    border-radius: 4px;
-    resize: vertical;
-    width: 20%;
-    height: 20%;
-    margin-bottom: 20px;
-    margin-left: 100%;
-  }
+li{
+  list-style-type: none;
+}
 
-input[type=submit]:hover {
-    background-color: #6e6a86;
-  }
 
-/* Modal Popup
-----------------------------------------------------------------------------*/
+/* Grid
+----------------------  */
+.container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto auto auto;
+  grid-template-areas:
+    'header header header'
+    'content content content'
+    'footer footer footer';
+}
+
+/* Header
+----------------------  */
+.header-top {
+  grid-area: header;
+  z-index: 1
+}
+.topbar{
+  background-color: var(--nav); 
+  box-shadow: 0.5px 0.5px 3px black;
+}
+
+.topbar ul{
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+}
+
+.topbar li {
+  padding: 0.8em;
+}
+
+#title {
+  font-size: 1.3em;
+  font-weight:500
+}
+
+/* Content
+----------------------  */
+.content {
+  grid-area: content;
+  display: flex;
+  justify-content: center;
+}
+
+.card-container {
+  width: 1000px;
+  height: 95vh;
+  overflow: hidden;
+  display: flex;
+  padding: 3rem;
+  flex-direction: column;
+}
+.card {
+  min-width: 90%;
+  height: 60px;
+  border-radius: 2px;
+  background-color: #e6f2f7;
+  box-shadow: 1px 1px 2em rgb(0, 0, 0);
+  display: flex;
+  padding: 1.5em;
+  transition: 0.2s;
+}
+
+.card:not(:first-child) {
+  margin-top: 35px
+}
+
+
+/* Card Header
+----------------------  */
+.card-header{
+  display:flex;
+  align-items:center
+}
+
+.card-title{
+  font-size: 2em;
+  font-weight: 600;
+  background-color: none;
+  color: black;
+}
+
+/* Card Price
+----------------------  */
+.price,.period{
+  color:black;
+  font-weight:600
+}
+
+.price{
+  font-size:1.5em;
+}
+.period{
+  font-size:1em;
+}
+
+.price-container{
+  margin-left:auto;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* .card:hover {
+  transform: translateY(-0.5rem);
+} */
+
+.card:hover~.card{
+  transform: translateY(50px);
+}
+
+
+/* Footer
+----------------------  */
+footer {
+  grid-area: footer;
+  background-color:  var(--nav);
+  box-shadow: 0.5px 0.5px 3px black;
+  z-index: 1
+}
+
+footer > ul{
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items:center
+}
+
+footer li {
+  padding-inline: 0.8em;
+}
+
+.links{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.9em;
+  padding: 0.8em
+}
+
+#author {
+  font-size: 0.8em;
+  color: var(--label);
+}
+
+/* Modal popups
+----------------------  */
 
   .modal {
     display: none;

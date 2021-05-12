@@ -3,27 +3,110 @@
 
 <head>
     <link rel="stylesheet" href="../static/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
     <script src="../static/app.js" defer></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <title>SubscriberFire</title>
 </head>
 
 <body>
 
     <body>
         <div class="container">
-            <div class="main">
-                <h1>Subscriptions</h1>
-                <div class="buttons">
-                    <button id=all-btn>All()</button>
-                    <button id=active-btn>Active()</button>
-                    <button id=cancelled-btn>Cancelled()</button>
-                    <button id=trash-btn>Trash()</button>
-                    <button id=export-btn>Export</button>
+            <!-- Top -->
+            <header class="header-top">
+                <nav class="topbar">
+                    <ul>
+                        <li></li>
+                        <li><h1 id="title">SubscriberFire</h1></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </nav>
+            </header>
+    
+            <!-- Middle -->
+            <div class="content">
+                <div class="card-container">
+                    <div class="card"> 
+                        <header class="card-header">
+                            <img width="100" src="" alt="sub pic">
+                            <h2 class="card-title">Netflix</h2>
+                        </header>
+                        <div class="date-container">
+
+                        </div>
+                        <div class="price-container">
+                            <span class="price">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="card"> 
+                        <header class="card-header">
+                            <img width="100" src="" alt="sub pic">
+                            <h2 class="card-title">Netflix</h2>
+                        </header>
+                        <div class="date-container">
+
+                        </div>
+                        <div class="price-container">
+                            <span class="price">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="card"> 
+                        <header class="card-header">
+                            <img width="100" src="" alt="sub pic">
+                            <h2 class="card-title">Netflix</h2>
+                        </header>
+                        <div class="date-container">
+
+                        </div>
+                        <div class="price-container">
+                            <span class="price">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="card"> 
+                        <header class="card-header">
+                            <img width="100" src="" alt="sub pic">
+                            <h2 class="card-title">Netflix</h2>
+                        </header>
+                        <div class="date-container">
+
+                        </div>
+                        <div class="price-container">
+                            <span class="price">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>                   
+                    <div class="card"> 
+                        <header class="card-header">
+                            <img width="100" src="" alt="sub pic">
+                            <h2 class="card-title">Netflix</h2>
+                        </header>
+                        <div class="date-container">
+
+                        </div>
+                        <div class="price-container">
+                            <span class="price">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="card"> 
+                        <header class="card-header">
+                            <img width="100" src="" alt="sub pic">
+                            <h2 class="card-title">Netflix</h2>
+                        </header>
+                        <div class="date-container">
+
+                        </div>
+                        <div class="price-container">
+                            <span class="price">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
                 </div>
 
-                <table>
+                <!-- <table>
                     <tr>
                         <th>Status(ID)</th>
                         <th>Subscription</th>
@@ -31,32 +114,32 @@
                         <th>Next Billed Date</th>
                         <th></th>
                     </tr>
-                </table>
+                </table> -->
             </div>
-            <div class="side-bar">
-                <li><a href="" style="text-decoration: none; color: white;" id=subscriptions>Subscriptions</a></li>
-                <li><a href="#" style="text-decoration: none; color: white;" id=newSubscriptions> New
-                        Subscription</a></li>
-            </div>
-            <!-- Popup/Modal -->
-            <div class="modal">
-                <div class="modal-content">
-                  <span class="close-btn">&times;</span>
-                <h1>Subscription Form</h1>
-                <form action ="">
-                    <input type="text" id="subscription-form" placeholder="Subscription Name" />
-                    <input type="text" id="cost-form" placeholder="Cost" />
-                    <input type="radio" id="monthly" name="occurence" value="monthly" checked="checked">
-                    <label for="monthly">monthly</label><br>
-                    <input type="radio" id="yearly" name="occurence" value="yearly">
-                    <label for="yearly">yearly</label><br>         
-                    
-                    <p>Next Billed Date</p>
-                    <input type="date" id="billedDate" name="date">
-                    <input type="button" id="submit-button" value="Send" />
-                </form>
-                </div>
-            </div>
+    
+            <!-- Bottom -->
+            <footer>
+                <ul>
+                    <li class="blank"></li>
+                    <li>
+                        <ul class="links">
+                            <li><a href="https://github.com/sunsled/2911" target="_blank">GitHub</a></li>
+                            <li><a href="https://trello.com/b/3HkCdAbE/subscriberfier" target="_blank">Trello</a></li>
+                        </ul>
+                    </li>
+                    <li id="author">
+                        Created by DevOps13
+                    </li>
+                </ul>
+                
+            </footer>
+        </div>
+
+
+
+                <!-- <li><a href="#" style="text-decoration: none; color: white;" id=newSubscriptions> New
+                        Subscription</a></li>  -->
+
 
     </body>
 
