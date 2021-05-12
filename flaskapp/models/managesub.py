@@ -59,8 +59,8 @@ def rw_json(file, payload):
     :param: file: file path
     :type: str
 
-    :param: id: id number
-    :type: int
+    :param: payload: new updated data
+    :type: dict
     
     """
     # both loops  go into the payload data and extract the id from the dict data
