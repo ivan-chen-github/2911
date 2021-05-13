@@ -102,4 +102,3 @@ def clear_json(file):
     with open(file, mode='r+') as f:
         f.seek(0)
         f.truncate()
-        
