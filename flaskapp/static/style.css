@@ -1,4 +1,5 @@
-/* Overall */
+/* Overall
+----------------------  */
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +19,8 @@ body {
   background-color: var(--main);
 }
 
-/* Images */
+/* Images
+----------------------  */
 img{
   color:rgb(218, 218, 218)
 }
@@ -142,6 +144,9 @@ li{
   color: black;
 }
 
+/* Card Date
+----------------------  */
+
 /* Card Price
 ----------------------  */
 .price,.period{
@@ -163,10 +168,6 @@ li{
   align-items:center;
   justify-content:center;
 }
-
-/* .card:hover {
-  transform: translateY(-0.5rem);
-} */
 
 .card:hover~.card{
   transform: translateY(50px);
@@ -191,7 +192,7 @@ li{
 }
 
 
-/* Add New Subscription Button
+/* Bottom Buttons Container
 ----------------------  */
 
 .button-container{
