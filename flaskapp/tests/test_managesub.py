@@ -23,7 +23,7 @@ def test_to_json():
 
 
 def test_rw_json():
-    """ to if entry is edited/updated """
+    """ test if entry is edited/updated """
     # updated data
     payload = {"subs": [{"cost": 11, "date": "2021-05-06", "id": 2, "name": "Dummy", "period": "monthly"}]}
 

@@ -199,13 +199,15 @@ function removeSub(row){
     let id = parseInt(row.cells[0].innerHTML)
     for (const e of listOfSubs){
         if(e.id === id){
+            let int = e.id
             console.log(e.id + " " + id)
             i = listOfSubs.indexOf(e)
             listOfSubs.splice(i,1)
+
+            // $.post('http://127.0.0.1:5000/delsub', {num: int});
         }
     }
     updateStorage()
-
 }
 
 /* adds listOfSubs and id to Flask via HTTP POST */
@@ -216,7 +218,7 @@ function updateStorage(){
     $.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:5000/addsub',
-        data: JSON.stringify({subs:listOfSubs,id:id}),
+        data: JSON.stringify({subs:listOfSubs}),
         success: function(data) { alert('data: ' + data); },
         contentType: "application/json",
         dataType: 'json'
