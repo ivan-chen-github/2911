@@ -266,6 +266,7 @@ function newSubscription(){
     let form = document.querySelector("#new-sub-form")
     clearForm(form)
     addSubsList(sub)
+
     insertCard(sub)
     newSubStorage()
 }
