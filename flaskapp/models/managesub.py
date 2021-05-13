@@ -34,13 +34,9 @@ def rm_json(file, id):
         # Load the data as JSON data
         data = json.load(json_file)
         # Get the values inside the JSON data and return the list of data
-        for list in data.values():
-            # For each dict in the list, enumerate it to get the index of each dict
-            for i, d in enumerate(list):
-                # if there is a dictionary with key "id" matching the id parameter
-                if d["id"] == id:
-                    # remove that dictionary from the list of dicts
-                    list.pop(i)
+        for i,sub in enumerate(data["subs"]):
+            if sub["id"] == id:
+                data["subs"].pop(i)
 
     # Open file again as read/write
     with open(file, mode='r+') as f:

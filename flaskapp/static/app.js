@@ -107,70 +107,7 @@ function updateStorage(sub){
 }
 
 
-/* EDIT / UPDATE
-----------------------------------------------------------------------------*/
 
-/* Pulls up information for editing subscription. Implementation for EDIT button */
-// INPUT: none
-// OUTPUT: none 
-function editSubscription(event){
-    displayEditModal()
-    let buttons = event.target.parentElement
-    let card = buttons.parentElement
-    let id = card.firstElementChild.firstElementChild.innerHTML
-    let name = card.firstElementChild.lastElementChild.innerHTML
-    let cost = parseFloat(card.children[2].firstElementChild.innerHTML).toFixed(2)
-    let period = card.children[2].lastElementChild.innerHTML
-    let date = card.children[1].lastElementChild.innerHTML
-    editCard = card
-    
-    document.querySelector("#edit-name").value = name
-    document.querySelector("#edit-cost").value = cost
-    document.querySelector("#edit-date").value = date
-    let edityear = document.querySelector("#edit-yearly").checked
-    if (period == "/year") {
-        edityear = "checked"
-    }
-    editID = parseInt(id)
-}
-
-/* Saves information for editing subscription. Implementation for SAVE button */
-// INPUT: none
-// OUTPUT: none 
-function saveSubscription(){
-    let editname = document.querySelector("#edit-name").value
-    let editcost = parseFloat(document.querySelector("#edit-cost").value).toFixed(2)
-    let editdate = document.querySelector("#edit-date").value
-    let editperiod = getPeriodEdit()
-    for(const sub of listOfSubs){
-        if (sub.id === editID){
-            sub.id = editID
-            sub.name = editname
-            sub.cost = editcost
-            sub.date = editdate
-            sub.period = editperiod
-            
-        }
-    }
-    card = editCard
-    let name = card.firstElementChild.lastElementChild.innerHTML = editname
-    let cost = card.children[2].firstElementChild.innerHTML = editcost
-    let period = card.children[2].lastElementChild.innerHTML = editperiod
-    let date = card.children[1].lastElementChild.innerHTML = editdate
-
-}
-
-/* Checks which radio button is selected and returns appropriate period as string */
-// INPUT: none
-// OUTPUT: "year" "month"
-function getPeriodEdit(){
-    result = "monthly"
-    let yearly = document.querySelector("#edit-yearly").checked
-    let monthly = document.querySelector("#edit-monthly").checked
-    if (yearly) result = "year"
-    else if (monthly) result = "month"
-    return result
-}
 
 /* CARDS
 ----------------------------------------------------------------------------*/
@@ -331,7 +268,7 @@ function addSubsList(sub){
 function removeCard(event){
     let buttons = event.target.parentElement
     let card = buttons.parentElement
-    let id = card.firstElementChild.firstElementChild.innerHTML
+    let id = parseInt(card.firstElementChild.firstElementChild.innerHTML)
     removeSub(id)
     card.remove()
 }
@@ -349,3 +286,67 @@ function removeSub(id){
     }
 }
 
+/* EDIT / UPDATE
+----------------------------------------------------------------------------*/
+
+/* Pulls up information for editing subscription. Implementation for EDIT button */
+// INPUT: none
+// OUTPUT: none 
+function editSubscription(event){
+    displayEditModal()
+    let buttons = event.target.parentElement
+    let card = buttons.parentElement
+    let id = card.firstElementChild.firstElementChild.innerHTML
+    let name = card.firstElementChild.lastElementChild.innerHTML
+    let cost = parseFloat(card.children[2].firstElementChild.innerHTML).toFixed(2)
+    let period = card.children[2].lastElementChild.innerHTML
+    let date = card.children[1].lastElementChild.innerHTML
+    editCard = card
+    
+    document.querySelector("#edit-name").value = name
+    document.querySelector("#edit-cost").value = cost
+    document.querySelector("#edit-date").value = date
+    let edityear = document.querySelector("#edit-yearly").checked
+    if (period == "/year") {
+        edityear = "checked"
+    }
+    editID = parseInt(id)
+}
+
+/* Saves information for editing subscription. Implementation for SAVE button */
+// INPUT: none
+// OUTPUT: none 
+function saveSubscription(){
+    let editname = document.querySelector("#edit-name").value
+    let editcost = parseFloat(document.querySelector("#edit-cost").value).toFixed(2)
+    let editdate = document.querySelector("#edit-date").value
+    let editperiod = getPeriodEdit()
+    for(const sub of listOfSubs){
+        if (sub.id === editID){
+            sub.id = editID
+            sub.name = editname
+            sub.cost = editcost
+            sub.date = editdate
+            sub.period = editperiod
+            
+        }
+    }
+    card = editCard
+    let name = card.firstElementChild.lastElementChild.innerHTML = editname
+    let cost = card.children[2].firstElementChild.innerHTML = editcost
+    let period = card.children[2].lastElementChild.innerHTML = editperiod
+    let date = card.children[1].lastElementChild.innerHTML = editdate
+
+}
+
+/* Checks which radio button is selected and returns appropriate period as string */
+// INPUT: none
+// OUTPUT: "year" "month"
+function getPeriodEdit(){
+    result = "monthly"
+    let yearly = document.querySelector("#edit-yearly").checked
+    let monthly = document.querySelector("#edit-monthly").checked
+    if (yearly) result = "year"
+    else if (monthly) result = "month"
+    return result
+}
