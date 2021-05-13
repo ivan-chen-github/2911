@@ -18,6 +18,11 @@ body {
   background-color: var(--main);
 }
 
+/* Images */
+img{
+  color:rgb(218, 218, 218)
+}
+
 /* Clickable
 ----------------------  */
 a{
@@ -90,14 +95,21 @@ li{
   grid-area: content;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.middle-container{
+  display:flex;
+  flex-direction: column;
+  align-items: end;
 }
 
 .card-container {
   width: 1000px;
-  height: 95vh;
+  height: 80vh;
   overflow: hidden;
   display: flex;
-  padding: 3rem;
+  margin: 3rem;
   flex-direction: column;
 }
 .card {
@@ -161,6 +173,49 @@ li{
 }
 
 
+/* Card Buttons
+----------------------  */
+
+.delete-container{
+  display:flex;
+  align-items:center
+}
+
+.delete-button{
+  font-size: 2em;
+  color: grey;
+}
+
+.delete-button:hover{
+  color:black
+}
+
+
+/* Add New Subscription Button
+----------------------  */
+
+.button-container{
+  padding-right: 3em;
+  padding-bottom: 2em;
+}
+
+#new-sub-button {
+  padding: 8px 16px;
+  border-radius: 2px;
+  /* letter-spacing: .09em; */
+  background-color:#286983;
+  color: white;
+  font-size:1.2em;
+  padding-inline: 6em;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+}
+
+#new-sub-button:hover{
+  background-color: #1b485a;
+}
+
+
 /* Footer
 ----------------------  */
 footer {
@@ -188,8 +243,12 @@ footer li {
   padding: 0.8em
 }
 
+.links a{
+  font-size:1.1em
+}
+
 #author {
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: var(--label);
 }
 
