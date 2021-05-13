@@ -197,17 +197,26 @@ li{
 /* Card Buttons
 ----------------------  */
 
-.delete-container{
+
+.card-button-container{
   display:flex;
-  align-items:center
+  align-items:center;
+  border-left: 2px solid lightgrey;
+  height: 60px;
+  margin-left: 1em;
 }
 
-.delete-button{
+.edit-button, .delete-button{
   font-size: 2em;
   color: grey;
 }
 
-.delete-button:hover{
+.edit-button{
+  font-size: 1.5em;
+  padding-inline:0.8em;
+}
+
+.edit-button:hover, .delete-button:hover{
   color:black
 }
 

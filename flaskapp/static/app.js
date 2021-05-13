@@ -4,13 +4,13 @@ let listOfSubs = []
 let subdata = []
 let id = 0
 
-let table = document.querySelector("table")
+let listOfCards = document.querySelector(".card-container")
 let newSubModal = document.querySelector("#new-sub-modal")
 let editModal = document.querySelector("#edit-modal")
 let closeBtn = document.querySelector(".close-btn")
 let submitBtn = document.querySelector("#submit-button")
 let newSubBtn = document.querySelector("#new-sub-button")
-getServerData()
+//getServerData()
 
 
 /* EVENT LISTENERS
@@ -25,15 +25,15 @@ newSubBtn.addEventListener("click",displaySubModal)
 ----------------------------------------------------------------------------*/
 
 /* HTTTP GET Request for latest data. Updates globals. */ 
-function getServerData(){
-    $.get("http://127.0.0.1:5000/data").done(function(data){
-        listOfSubs = data["subs"]
-        let uid = data["id"]
-        if (!uid) id = 0
-        else id = uid
-        updateTable()
-    })
-}
+// function getServerData(){
+//     $.get("http://127.0.0.1:5000/data").done(function(data){
+//         listOfSubs = data["subs"]
+//         let uid = data["id"]
+//         if (!uid) id = 0
+//         else id = uid
+//         updateTable()
+//     })
+// }
 
 /* Displays the modal popup box*/ 
 function displayEditModal(){
@@ -79,8 +79,26 @@ function updateCards(){
 // INPUT: Subscription(object)
 // OUTPUT: none 
 function insertCard(sub){
+    let card = createCard(sub)
+    listOfCards.appendChild(card)
+    // addButtons(row)
     
-    addButtons(row)
+}
+
+/* Constructs an entire Card with its elements according to given Sub object */
+// INPUT: Subscription(object)
+// OUTPUT: none 
+function createCard(sub){
+    let card = document.createElement("div")
+    card.className = "card"
+
+    let header = document.createElement("header")
+    header.className = "card-header"
+    header.insertAdjacentHTML("beforeend",'<div id="uid">'+sub.id+'</div><img width="100" src="" alt="sub pic here"><h2 class="card-title">'+sub.name+'</h2>')
+    card.appendChild(header)
+
+    
+    return card
 }
 
 /* Adds edit, notes, and delete button to table row  */
