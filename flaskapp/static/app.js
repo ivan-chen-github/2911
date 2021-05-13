@@ -81,8 +81,6 @@ function updateCards(){
 function insertCard(sub){
     let card = createCard(sub)
     listOfCards.appendChild(card)
-    // addButtons(row)
-    
 }
 
 /* Constructs an entire Card with its elements according to given Sub object */
@@ -97,7 +95,21 @@ function createCard(sub){
     header.insertAdjacentHTML("beforeend",'<div id="uid">'+sub.id+'</div><img width="100" src="" alt="sub pic here"><h2 class="card-title">'+sub.name+'</h2>')
     card.appendChild(header)
 
-    
+    let date = document.createElement("div")
+    date.className = "date-container"
+    date.insertAdjacentHTML("beforeend",'<span class="date">'+sub.date+'</span>')
+    card.appendChild(date)
+
+    let price = document.createElement("div")
+    price.className = "price-container"
+    price.insertAdjacentHTML("beforeend",'<span class="price">$'+sub.cost+'</span><span class="period">/'+sub.period+'</span>')
+    card.appendChild(price)
+
+    let buttons = document.createElement("div")
+    buttons.className = "card-button-container"
+    buttons.insertAdjacentHTML("beforeend",'<button class="edit-button">edit</button><button class="delete-button">&times;</button>')
+    card.appendChild(buttons)
+
     return card
 }
 
@@ -144,7 +156,7 @@ function createDeleteBtn(){
 function newSubscription(){
     id++
     let name = document.querySelector("#new-sub-name").value
-    let cost = parseFloat(document.querySelector("#new-sub-cost").value)
+    let cost = parseFloat(document.querySelector("#new-sub-cost").value).toFixed(2)
     let period = getPeriod()
     let date = document.querySelector("#new-sub-date").value
     let sub = createSub(id,name,cost,period,date)
@@ -172,8 +184,8 @@ function getPeriod(){
     result = "monthly"
     let yearly = document.querySelector("#new-sub-yearly").checked
     let monthly = document.querySelector("#new-sub-monthly").checked
-    if (yearly) result = "yearly"
-    else if (monthly) result = "monthly"
+    if (yearly) result = "year"
+    else if (monthly) result = "month"
     return result
 }
 
