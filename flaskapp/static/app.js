@@ -24,20 +24,10 @@ newSubBtn.addEventListener("click",displaySubModal)
 /* FUNCTIONS
 ----------------------------------------------------------------------------*/
 
-/* HTTTP GET Request for latest data. Updates globals. */ 
-function getServerData(){
-    $.get("http://127.0.0.1:5000/data").done(function(data){
-        listOfSubs = data["subs"]
-        let uid = data["id"]
-        if (!uid) id = 0
-        else id = uid
-        updateCards()
-    })
-}
-
 /* Displays the modal popup box*/ 
 function displayEditModal(){
     editModal.style.display = "block"
+    
 }
 
 /* Displays the modal popup box*/ 
@@ -60,14 +50,96 @@ function closeModalWindow(event){
     }
   }
 
-
-
-
-
-/* TABLE
+/* HTTP REQUESTS
 ----------------------------------------------------------------------------*/
 
-/* Populates table with data from listOfSubs */
+/* adds listOfSubs and id to Flask via HTTP POST */
+// INPUT: none
+// OUTPUT: none 
+function updateStorage(){
+    // Send listofSubs to Flask
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:5000/addsub',
+        data: JSON.stringify({subs:listOfSubs,id:id}),
+        success: function(data) { alert('data: ' + data); },
+        contentType: "application/json",
+        dataType: 'json'
+    });
+}
+
+
+/* Delets Subscription object from Flask via HTTP POST */
+// INPUT: id (int)
+// OUTPUT: none 
+function deleteStorage(id){
+    // Send listofSubs to Flask
+    $.post('http://127.0.0.1:5000/delsub',{num:id})
+}
+
+/* HTTTP GET Request for latest data. Updates globals. */ 
+function getServerData(){
+    $.get("http://127.0.0.1:5000/data").done(function(data){
+        listOfSubs = data["subs"]
+        let uid = data["id"]
+        if (!uid) id = 0
+        else id = uid
+        updateCards()
+    })
+}
+
+
+/* EDIT / UPDATE
+----------------------------------------------------------------------------*/
+
+/* Pulls up information for editing subscription. Implementation for EDIT button */
+// INPUT: none
+// OUTPUT: none 
+function editSubscription(event){
+    displayEditModal()
+    let buttons = event.target.parentElement
+    let card = buttons.parentElement
+    let id = card.firstElementChild.firstElementChild.innerHTML
+    let name = card.firstElementChild.lastElementChild.innerHTML
+    let cost = card.children[2].firstElementChild.innerHTML
+    let period = card.children[2].lastElementChild.innerHTML
+    let date = card.children[1].lastElementChild.innerHTML
+    
+    document.querySelector("#edit-name").value = name
+    document.querySelector("#edit-cost").value = cost
+    document.querySelector("#edit-date").value = date
+    let edityear = document.querySelector("#edit-yearly").checked
+    if (period == "/year") {
+        edityear = "checked"
+    }
+}
+
+/* Saves information for editing subscription. Implementation for SAVE button */
+// INPUT: none
+// OUTPUT: none 
+function saveSubscription(){
+    let editname = document.querySelector("#edit-name").value
+    let editcost = document.querySelector("#edit-cost").value
+    let editdate = document.querySelector("#edit-date").value
+    let edityear = getPeriodEdit()
+}
+
+/* Checks which radio button is selected and returns appropriate period as string */
+// INPUT: none
+// OUTPUT: "year" "month"
+function getPeriodEdit(){
+    result = "monthly"
+    let yearly = document.querySelector("#edit-yearly").checked
+    let monthly = document.querySelector("#edit-monthly").checked
+    if (yearly) result = "year"
+    else if (monthly) result = "month"
+    return result
+}
+
+/* CARDS
+----------------------------------------------------------------------------*/
+
+/* Populates Cards Container with data from listOfSubs */
 // INPUT: none
 // OUTPUT: none
 function updateCards(){
@@ -77,7 +149,7 @@ function updateCards(){
 
 }
 
-/* Inserts a row according to the given Subscription for the table */
+/* Inserts a card to listOfCards according to the given Subscription */
 // INPUT: Subscription(object)
 // OUTPUT: none 
 function insertCard(sub){
@@ -124,7 +196,7 @@ function createEditBtn(){
     let button = document.createElement("button")
     button.className = "edit-button"
     button.innerHTML = "edit"
-    button.addEventListener("click",displayEditModal)
+    button.addEventListener("click",editSubscription)
     return button
 }
 
@@ -162,18 +234,19 @@ function newSubscription(){
     updateStorage()
 }
 
-function clearForm(form){
-    form.reset()
-}
+
 
 
 /* Clears all fields in the submission form */
 // INPUT: none
 // OUTPUT: none 
+function clearForm(form){
+    form.reset()
+}
 
 /* Checks which radio button is selected and returns appropriate period as string */
-// INPUT: name(string) cost(float) period(string) date(Date)
-// OUTPUT: "yearly" "monthly"
+// INPUT: none
+// OUTPUT: "year" "month"
 function getPeriod(){
     result = "monthly"
     let yearly = document.querySelector("#new-sub-yearly").checked
@@ -221,7 +294,7 @@ function addSubsList(sub){
 function removeCard(event){
     let buttons = event.target.parentElement
     let card = buttons.parentElement
-    let id = card.firstElementChild.firstElementChild
+    let id = card.firstElementChild.firstElementChild.innerHTML
     removeSub(id)
     card.remove()
 }
@@ -239,28 +312,3 @@ function removeSub(id){
     }
 }
 
-
-
-/* adds listOfSubs and id to Flask via HTTP POST */
-// INPUT: none
-// OUTPUT: none 
-function updateStorage(){
-    // Send listofSubs to Flask
-    $.ajax({
-        type: 'POST',
-        url: 'http://127.0.0.1:5000/addsub',
-        data: JSON.stringify({subs:listOfSubs,id:id}),
-        success: function(data) { alert('data: ' + data); },
-        contentType: "application/json",
-        dataType: 'json'
-    });
-}
-
-
-/* Delets Subscription object from Flask via HTTP POST */
-// INPUT: id (int)
-// OUTPUT: none 
-function deleteStorage(id){
-    // Send listofSubs to Flask
-    $.post('http://127.0.0.1:5000/delsub',{num:id})
-}
