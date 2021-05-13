@@ -387,11 +387,11 @@ input[type=radio]{
   cursor: pointer;
 }
 
-#submit-button:hover {
+#submit-button:hover,#save-button:hover {
   background-color: var(--buttonhover)
 }
 
-#submit-button:active {
+#submit-button:active,#save-button:active {
   color:var(--label)
 }
 .radio-container{

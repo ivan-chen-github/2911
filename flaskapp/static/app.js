@@ -3,6 +3,8 @@
 let listOfSubs = []
 let subdata = []
 let id = 0
+let editID = 0
+let editCard = null
 
 let listOfCards = document.querySelector(".card-container")
 let newSubModal = document.querySelector("#new-sub-modal")
@@ -10,6 +12,7 @@ let editModal = document.querySelector("#edit-modal")
 let closeBtns = document.querySelectorAll(".close-btn")
 let submitBtn = document.querySelector("#submit-button")
 let newSubBtn = document.querySelector("#new-sub-button")
+let saveBtn = document.querySelector("#save-button")
 getServerData()
 
 
@@ -20,6 +23,7 @@ for (const button of closeBtns) {
 window.addEventListener("click",closeModalWindow)
 submitBtn.addEventListener("click",newSubscription)
 newSubBtn.addEventListener("click",displaySubModal)
+saveBtn.addEventListener("click",saveSubscription)
 
 /* FUNCTIONS
 ----------------------------------------------------------------------------*/
@@ -104,6 +108,7 @@ function editSubscription(event){
     let cost = card.children[2].firstElementChild.innerHTML
     let period = card.children[2].lastElementChild.innerHTML
     let date = card.children[1].lastElementChild.innerHTML
+    editCard = card
     
     document.querySelector("#edit-name").value = name
     document.querySelector("#edit-cost").value = cost
@@ -112,6 +117,7 @@ function editSubscription(event){
     if (period == "/year") {
         edityear = "checked"
     }
+    editID = parseInt(id)
 }
 
 /* Saves information for editing subscription. Implementation for SAVE button */
@@ -121,7 +127,24 @@ function saveSubscription(){
     let editname = document.querySelector("#edit-name").value
     let editcost = document.querySelector("#edit-cost").value
     let editdate = document.querySelector("#edit-date").value
-    let edityear = getPeriodEdit()
+    let editperiod = getPeriodEdit()
+    console.log("reached")
+    for(const sub of listOfSubs){
+        if (sub.id === editID){
+            sub.id = editID
+            sub.name = editname
+            sub.cost = editcost
+            sub.date = editdate
+            sub.period = editperiod
+            
+        }
+    }
+    card = editCard
+    let name = card.firstElementChild.lastElementChild.innerHTML = editname
+    let cost = card.children[2].firstElementChild.innerHTML = editcost
+    let period = card.children[2].lastElementChild.innerHTML = editperiod
+    let date = card.children[1].lastElementChild.innerHTML = editdate
+
 }
 
 /* Checks which radio button is selected and returns appropriate period as string */
