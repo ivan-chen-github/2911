@@ -58,7 +58,7 @@ def delsub():
     rm_json(json_url, int(id))
     return f'', 200
 
-@app.route('/upsub', methods='POST')
+@app.route('/upsub', methods=['POST'])
 def upsub():
     """
     Updates subs.json with new data.
