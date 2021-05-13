@@ -10,7 +10,7 @@ let editModal = document.querySelector("#edit-modal")
 let closeBtn = document.querySelector(".close-btn")
 let submitBtn = document.querySelector("#submit-button")
 let newSubBtn = document.querySelector("#new-sub-button")
-//getServerData()
+getServerData()
 
 
 /* EVENT LISTENERS
@@ -25,15 +25,15 @@ newSubBtn.addEventListener("click",displaySubModal)
 ----------------------------------------------------------------------------*/
 
 /* HTTTP GET Request for latest data. Updates globals. */ 
-// function getServerData(){
-//     $.get("http://127.0.0.1:5000/data").done(function(data){
-//         listOfSubs = data["subs"]
-//         let uid = data["id"]
-//         if (!uid) id = 0
-//         else id = uid
-//         updateTable()
-//     })
-// }
+function getServerData(){
+    $.get("http://127.0.0.1:5000/data").done(function(data){
+        listOfSubs = data["subs"]
+        let uid = data["id"]
+        if (!uid) id = 0
+        else id = uid
+        updateCards()
+    })
+}
 
 /* Displays the modal popup box*/ 
 function displayEditModal(){
@@ -92,7 +92,7 @@ function createCard(sub){
 
     let header = document.createElement("header")
     header.className = "card-header"
-    header.insertAdjacentHTML("beforeend",'<div id="uid">'+sub.id+'</div><img width="100" src="" alt="sub pic here"><h2 class="card-title">'+sub.name+'</h2>')
+    header.insertAdjacentHTML("beforeend",'<div class="uid">'+sub.id+'</div><img width="100" src="" alt="sub pic here"><h2 class="card-title">'+sub.name+'</h2>')
     card.appendChild(header)
 
     let date = document.createElement("div")
@@ -107,28 +107,20 @@ function createCard(sub){
 
     let buttons = document.createElement("div")
     buttons.className = "card-button-container"
-    buttons.insertAdjacentHTML("beforeend",'<button class="edit-button">edit</button><button class="delete-button">&times;</button>')
+    buttons.appendChild(createEditBtn())
+    buttons.appendChild(createDeleteBtn())
     card.appendChild(buttons)
 
     return card
 }
 
-/* Adds edit, notes, and delete button to table row  */
-// INPUT: <tr> (HTML)
-// OUTPUT: none 
-function addButtons(row){
-    let cell = row.insertCell(4)
-    cell.appendChild(createDeleteBtn())
-    cell.appendChild(createEditBtn())
-    // cell.insertAdjacentHTML("afterbegin",notesBtn + editBtn)
-}
 
 /* Creates an edit button and returns its reference */
 // INPUT: none
 // OUTPUT: <button> (HTML)
 function createEditBtn(){
     let button = document.createElement("button")
-    button.class = "edit-btn"
+    button.className = "edit-button"
     button.innerHTML = "edit"
     button.addEventListener("click",displayEditModal)
     return button
@@ -140,9 +132,9 @@ function createEditBtn(){
 // OUTPUT: <button> (HTML)
 function createDeleteBtn(){
     let button = document.createElement("button")
-    button.class = "delete-btn"
-    button.innerHTML = "delete"
-    button.addEventListener("click",removeRow)
+    button.className = "delete-button"
+    button.innerHTML = "&times;"
+    button.addEventListener("click",removeCard)
     return button
 }
 
@@ -164,8 +156,8 @@ function newSubscription(){
     let form = document.querySelector("#new-sub-form")
     clearForm(form)
     addSubsList(sub)
-    
-    updateCards()
+    insertCard(sub)
+    updateStorage()
 }
 
 function clearForm(form){
@@ -224,27 +216,28 @@ function addSubsList(sub){
 /* Deletes a subscription row according to click event */
 // INPUT: none
 // OUTPUT: none
-function removeRow(event){
-    let cell = event.target.parentElement
-    let row = cell.parentElement
-    removeSub(row)
-    table.deleteRow(row.rowIndex)
+function removeCard(event){
+    let buttons = event.target.parentElement
+    let card = buttons.parentElement
+    let id = card.firstElementChild.firstElementChild
+    removeSub(id)
+    card.remove()
 }
 
-/* Deletes a subscription from listOfSubs */
+/* Deletes a subscription from listOfSubs and Flask if they exist*/
 // INPUT: none
 // OUTPUT: none
-function removeSub(row){
-    let id = parseInt(row.cells[0].innerHTML)
+function removeSub(id){
     for (const e of listOfSubs){
         if(e.id === id){
             i = listOfSubs.indexOf(e)
             listOfSubs.splice(i,1)
+            deleteStorage(id)
         }
     }
-    updateStorage()
-
 }
+
+
 
 /* adds listOfSubs and id to Flask via HTTP POST */
 // INPUT: none
@@ -262,4 +255,10 @@ function updateStorage(){
 }
 
 
-
+/* Delets Subscription object from Flask via HTTP POST */
+// INPUT: id (int)
+// OUTPUT: none 
+function deleteStorage(id){
+    // Send listofSubs to Flask
+    $.post('http://127.0.0.1:5000/delsub',{num:id})
+}

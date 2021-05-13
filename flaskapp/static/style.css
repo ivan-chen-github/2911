@@ -22,7 +22,7 @@ body {
   background-color: var(--main);
 }
 
-#uid{
+.uid{
   display:none;
 }
 
