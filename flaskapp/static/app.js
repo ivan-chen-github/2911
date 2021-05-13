@@ -60,8 +60,7 @@ function closeModalWindow(event){
 /* adds listOfSubs and id to Flask via HTTP POST */
 // INPUT: none
 // OUTPUT: none 
-function updateStorage(){
-    // Send listofSubs to Flask
+function newSubStorage(){
     $.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:5000/addsub',
@@ -73,7 +72,7 @@ function updateStorage(){
 }
 
 
-/* Delets Subscription object from Flask via HTTP POST */
+/* Deletes Subscription object from Flask via HTTP POST */
 // INPUT: id (int)
 // OUTPUT: none 
 function deleteStorage(id){
@@ -90,6 +89,21 @@ function getServerData(){
         else id = uid
         updateCards()
     })
+}
+
+/* Updates Subscription object from Flask via HTTP POST */
+// INPUT: Subscription (object)
+// OUTPUT: none 
+function updateStorage(sub){
+    // $.post('http://127.0.0.1:5000/upsub',)
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:5000/upsub',
+        data: JSON.stringify(sub),
+        success: function(data) { alert('data: ' + data); },
+        contentType: "application/json",
+        dataType: 'json'
+    });
 }
 
 
@@ -125,10 +139,9 @@ function editSubscription(event){
 // OUTPUT: none 
 function saveSubscription(){
     let editname = document.querySelector("#edit-name").value
-    let editcost = document.querySelector("#edit-cost").value
+    let editcost = parseFloat(document.querySelector("#edit-cost").value).toFixed(2)
     let editdate = document.querySelector("#edit-date").value
     let editperiod = getPeriodEdit()
-    console.log("reached")
     for(const sub of listOfSubs){
         if (sub.id === editID){
             sub.id = editID
@@ -254,7 +267,7 @@ function newSubscription(){
     clearForm(form)
     addSubsList(sub)
     insertCard(sub)
-    updateStorage()
+    newSubStorage()
 }
 
 
