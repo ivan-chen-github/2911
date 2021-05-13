@@ -7,7 +7,7 @@ let id = 0
 let listOfCards = document.querySelector(".card-container")
 let newSubModal = document.querySelector("#new-sub-modal")
 let editModal = document.querySelector("#edit-modal")
-let closeBtn = document.querySelector(".close-btn")
+let closeBtns = document.querySelectorAll(".close-btn")
 let submitBtn = document.querySelector("#submit-button")
 let newSubBtn = document.querySelector("#new-sub-button")
 getServerData()
@@ -15,8 +15,8 @@ getServerData()
 
 /* EVENT LISTENERS
 ---------------------------------------------------------------------------*/
-
-closeBtn.addEventListener("click",closeModalBtn)
+for (const button of closeBtns) {
+    button.addEventListener('click', closeModalBtn)}
 window.addEventListener("click",closeModalWindow)
 submitBtn.addEventListener("click",newSubscription)
 newSubBtn.addEventListener("click",displaySubModal)
@@ -48,13 +48,15 @@ function displaySubModal(){
 /* Hides the modal popup box*/ 
 function closeModalBtn(){
     newSubModal.style.display = "none"
+    editModal.style.display = "none"
 }
 
 
 /* Hides the modal popup if background is clicked*/
 function closeModalWindow(event){
-    if(event.target === newSubModal){
+    if(event.target === newSubModal || event.target === editModal){
         newSubModal.style.display = "none"
+        editModal.style.display = "none"
     }
   }
 
