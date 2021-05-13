@@ -206,6 +206,7 @@ function newSubscription(){
 
     insertCard(sub)
     newSubStorage()
+    closeModalBtn()
 }
 
 
@@ -298,7 +299,7 @@ function editSubscription(event){
     let card = buttons.parentElement
     let id = card.firstElementChild.firstElementChild.innerHTML
     let name = card.firstElementChild.lastElementChild.innerHTML
-    let cost = parseFloat(card.children[2].firstElementChild.innerHTML).toFixed(2)
+    let cost = card.children[2].firstElementChild.innerHTML.substring(1)
     let period = card.children[2].lastElementChild.innerHTML
     let date = card.children[1].lastElementChild.innerHTML
     editCard = card
@@ -321,22 +322,22 @@ function saveSubscription(){
     let editcost = parseFloat(document.querySelector("#edit-cost").value).toFixed(2)
     let editdate = document.querySelector("#edit-date").value
     let editperiod = getPeriodEdit()
-    for(const sub of listOfSubs){
+    for(sub of listOfSubs){
         if (sub.id === editID){
             sub.id = editID
             sub.name = editname
             sub.cost = editcost
             sub.date = editdate
             sub.period = editperiod
-            
+            updateStorage(sub)
         }
     }
     card = editCard
     let name = card.firstElementChild.lastElementChild.innerHTML = editname
     let cost = card.children[2].firstElementChild.innerHTML = editcost
-    let period = card.children[2].lastElementChild.innerHTML = editperiod
+    let period = card.children[2].lastElementChild.innerHTML = '/' + editperiod
     let date = card.children[1].lastElementChild.innerHTML = editdate
-
+    
 }
 
 /* Checks which radio button is selected and returns appropriate period as string */
