@@ -1,7 +1,7 @@
 # Imported libraries
 from flask import Flask, render_template, request
 from flask_cors import CORS
-from models.managesub import to_json, rm_json
+from models.managesub import to_json, rm_json, rw_json
 import json
 import os
 
@@ -34,13 +34,6 @@ def new():
     """
     return render_template('new.html')
 
-# @app.route("note.html")
-# def note():
-#     """
-#     Route that displays notes
-#     """
-#     return render_template('note.html')
-
 @app.route('/addsub', methods=['POST'])
 def addsub():
     """
@@ -56,13 +49,26 @@ def addsub():
 @app.route('/delsub', methods=['POST'])
 def delsub():
     """
-    Deletes subscription entry from JSON based on id
+    Deletes subscription entry from JSON based on id.
     """
     # request id
-    id = request.json
+    id = request.form['num']
 
     # delete subscription entry
-    rm_json(json_url, id)
+    rm_json(json_url, int(id))
+    return f'', 200
+
+@app.route('/upsub', methods='POST')
+def upsub():
+    """
+    Updates subs.json with new data.
+    """
+    # request new data
+    # pass in sub data as {"subs": [{"cost": int, "date": "date", "id": int, "name": "str", "period": "str"}]}
+    payload = request.json
+
+    # update file
+    rw_json(json_url, payload)
     return f'', 200
 
 

@@ -52,39 +52,40 @@ def rm_json(file, id):
         f.write(json.dumps(data))
 
 
-def rw_json(file, id):
+def rw_json(file, payload):
     """
-    Reads current apps.json file and rewrites the file with new values
+    Reads current apps.json file and rewrites to the json file with new values
 
     :param: file: file path
     :type: str
 
-    :param: id: id number
-    :type: int
+    :param: payload: new updated data
+    :type: dict
     
-    Im assuming we could use another parameter involving the new file values...
-    or just write the new_dict to the subs.json (removing all the read file code in this)
     """
-    # Create the new dict we will use to rewrite to the file
+    # both loops  go into the payload data and extract the id from the dict data
+    for new_list in payload.values():
+        for payload_d in new_list:
+            matched_id = payload_d['id']# this is the id used to match with the current data
+            new_payload_vals = payload_d
+    
+    # initialize the new dict and list to append all changed & unchanged contents
     new_dict = {}
+    new_values_list = []
     # Open file as read
     with open (file, mode='r') as f:
-        # Load the data as JSON data into variable datastore
+        # load the current json data into variable datastore
         datastore = json.load(f)
-        # Get the values inside the JSON data and return the list of data
+        # get the listed values from the key "subs": [all data here]
         for list in datastore.values():
-            # Create the list that will contain all the new rewritten dict values
-            new_values_list = []
-            # For each dict in the list, loops through each dict line
+            # loops into each dict inside that that list
             for d in list:
-                # if there is a dictionary with key "id" matching the id value
-                if d["id"] == id:
-                    # For each key and value in that matched id, loop through each key & value
-                    for key, value in d.items():
-                        # we can go through each value and change whatever needs to be changed
-                        pass
-
-                # after exiting the prev loop, it will append the new dict values into a list
+                # loops into each singular dict key & value in that dict
+                for key, value in d.items():
+                    # if the key is 'id' and the value matches the value of the payload id - it executes
+                    if key == 'id' and value == matched_id:
+                        d = new_payload_vals
+                # appends those dictonary values after each iteration (changed or unchanged)
                 new_values_list.append(d)
     
     # this creates a new dict with the same 'subs' as key with the new values
@@ -105,3 +106,4 @@ def clear_json(file):
     with open(file, mode='r+') as f:
         f.seek(0)
         f.truncate()
+        
