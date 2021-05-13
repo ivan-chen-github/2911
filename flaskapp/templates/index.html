@@ -31,6 +31,7 @@
                     <div class="card-container">
                         <div class="card"> 
                             <header class="card-header">
+                                <div id="uid"></div>
                                 <img width="100" src="" alt="sub pic here">
                                 <h2 class="card-title">Netflix</h2>
                             </header>
@@ -55,15 +56,6 @@
                     </div>
                 </div>
 
-                <!-- <table>
-                    <tr>
-                        <th>Status(ID)</th>
-                        <th>Subscription</th>
-                        <th>Cost</th>
-                        <th>Next Billed Date</th>
-                        <th></th>
-                    </tr>
-                </table> -->
             </div>
             
     
@@ -88,21 +80,21 @@
         <!-- New Sub Popup -->
         <div class="modal" id="new-sub-modal">
             
-            <div class="modal-content" action ="">
+            <div class="modal-content">
                 <header class="modal-header">
                     <h2>New Subscription</h2>
                     <span class="close-btn">&times;</span>
                 </header>
-                <form action="">
+                <form id="new-sub-form"action="http://127.0.0.1:5000//addsub" method="POST">
                     <input type="text" id="new-sub-name" placeholder="Subscription Name" />
                     <input type="text" id="new-sub-cost" placeholder="Cost" />
                     <div class="radio-container">  
                         <label for="new-sub-monthly">
-                            <input type="radio" id="new-sub-monthly" name="occurence" value="monthly" checked="checked">
+                            <input type="radio" id="new-sub-monthly" name="period" value="monthly" checked="checked">
                             Monthly
                         </label>
                         <label for="new-sub-yearly">                        
-                            <input type="radio" id="new-sub-yearly" name="occurence" value="yearly">
+                            <input type="radio" id="new-sub-yearly" name="period" value="yearly">
                             Yearly
                         </label>  
                     </div> 
@@ -111,7 +103,7 @@
                         <label for="new-sub-date">Choose Bill Date: </label>
                         <input type="date" id="new-sub-date" name="date">
                     </div>
-                    <input type="submit" id="submit-button" value="Add New Subscription" />
+                    <button id="submit-button">Add New Subscription</button>
                 </form>
             </div>
         </div>

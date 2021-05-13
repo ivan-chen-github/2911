@@ -22,6 +22,10 @@ body {
   background-color: var(--main);
 }
 
+#uid{
+  display:none;
+}
+
 /* Images
 ----------------------  */
 img{
@@ -346,7 +350,7 @@ input[type=radio]{
   margin-right:10px;
 }
 
-input[type=submit] {
+#submit-button {
   width: 100%;
   background-color: var(--button);
   color: white;
@@ -357,8 +361,12 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+#submit-button:hover {
   background-color: var(--buttonhover)
+}
+
+#submit-button:active {
+  color:var(--label)
 }
 .radio-container{
   display:flex;

@@ -59,31 +59,27 @@ function closeModalWindow(event){
   }
 
 
-/* Populates table with data from listOfSubs */
-function updateTable(){
-    for (const sub of listOfSubs){
-        insertEntry(sub)
-    }
 
-}
 
 
 /* TABLE
 ----------------------------------------------------------------------------*/
 
+/* Populates table with data from listOfSubs */
+// INPUT: none
+// OUTPUT: none
+function updateCards(){
+    for (const sub of listOfSubs){
+        insertCard(sub)
+    }
+
+}
+
 /* Inserts a row according to the given Subscription for the table */
 // INPUT: Subscription(object)
 // OUTPUT: none 
-function insertEntry(sub){
-    let row = table.insertRow(-1) // Firefox and Opera require a parameter(-1). Other browsers do not.
-    let statusCell = row.insertCell(0)
-    let nameCell = row.insertCell(1)
-    let costCell = row.insertCell(2)
-    let dateCell = row.insertCell(3)
-    statusCell.innerHTML = sub.id // Placeholder default for now
-    nameCell.innerHTML = sub.name
-    costCell.innerHTML = sub.cost.toFixed(2)
-    dateCell.innerHTML = sub.date
+function insertCard(sub){
+    
     addButtons(row)
 }
 
@@ -129,23 +125,35 @@ function createDeleteBtn(){
 // OUTPUT: none 
 function newSubscription(){
     id++
-    let name = document.querySelector("#subscription-form").value
-    let cost = parseFloat(document.querySelector("#cost-form").value)
+    let name = document.querySelector("#new-sub-name").value
+    let cost = parseFloat(document.querySelector("#new-sub-cost").value)
     let period = getPeriod()
-    let date = document.querySelector("#billedDate").value
+    let date = document.querySelector("#new-sub-date").value
     let sub = createSub(id,name,cost,period,date)
+
+    let form = document.querySelector("#new-sub-form")
+    clearForm(form)
     addSubsList(sub)
-    updateStorage()
-    updateTable()
+    
+    updateCards()
 }
+
+function clearForm(form){
+    form.reset()
+}
+
+
+/* Clears all fields in the submission form */
+// INPUT: none
+// OUTPUT: none 
 
 /* Checks which radio button is selected and returns appropriate period as string */
 // INPUT: name(string) cost(float) period(string) date(Date)
 // OUTPUT: "yearly" "monthly"
 function getPeriod(){
     result = "monthly"
-    let yearly = document.querySelector("#yearly").checked
-    let monthly = document.querySelector("#monthly").checked
+    let yearly = document.querySelector("#new-sub-yearly").checked
+    let monthly = document.querySelector("#new-sub-monthly").checked
     if (yearly) result = "yearly"
     else if (monthly) result = "monthly"
     return result
