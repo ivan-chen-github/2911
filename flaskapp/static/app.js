@@ -9,7 +9,7 @@ let newSubModal = document.querySelector("#new-sub-modal")
 let editModal = document.querySelector("#edit-modal")
 let closeBtn = document.querySelector(".close-btn")
 let submitBtn = document.querySelector("#submit-button")
-let newSubBtn = document.querySelector("#newSubscriptions")
+let newSubBtn = document.querySelector("#new-sub-button")
 getServerData()
 
 

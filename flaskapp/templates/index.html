@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/style.css">
     <script src="../static/app.js" defer></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -73,6 +75,7 @@
                         <ul class="links">
                             <li><a href="https://github.com/sunsled/2911" target="_blank">GitHub</a></li>
                             <li><a href="https://trello.com/b/3HkCdAbE/subscriberfier" target="_blank">Trello</a></li>
+                            <li><a href="#">Documentation</a></li>
                         </ul>
                     </li>
                     <li id="author">
@@ -80,9 +83,32 @@
                     </li>
                 </ul>
             </footer>
-            
         </div>
 
+        <!-- New Sub Popup -->
+        <div class="modal" id="new-sub-modal">
+            
+            <div class="modal-content" action ="">
+                <header class="modal-header">
+                    <h2>New Subscription</h2>
+                    <span class="close-btn">&times;</span>
+                </header>
+                <form action="">
+                    <input type="text" id="new-sub-name" placeholder="Subscription Name" />
+                    <input type="text" id="new-sub-cost" placeholder="Cost" />
+                    <div class="radio-container">
+                        <input type="radio" id="new-sub-monthly" name="occurence" value="monthly" checked="checked">
+                        <label for="new-sub-monthly">Monthly</label>
+                        <input type="radio" id="new-sub-yearly" name="occurence" value="yearly">
+                        <label for="new-sub-yearly">Yearly</label>  
+                    </div> 
+                    
+                    <p>Next Billed Date</p>
+                    <input type="date" id="new-sub-date" name="date">
+                    <input type="button" id="submit-button" value="Add New Subscription" />
+                </form>
+            </div>
+        </div>
 
     </body>
 
