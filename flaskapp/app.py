@@ -49,7 +49,7 @@ def addsub():
 @app.route('/delsub', methods=['POST'])
 def delsub():
     """
-    Deletes subscription entry from JSON based on id
+    Deletes subscription entry from JSON based on id.
     """
     # request id
     id = request.form['num']
@@ -61,9 +61,10 @@ def delsub():
 @app.route('/upsub', methods='POST')
 def upsub():
     """
-    Updates subs.json with new data
+    Updates subs.json with new data.
     """
     # request new data
+    # pass in sub data as {"subs": [{"cost": int, "date": "date", "id": int, "name": "str", "period": "str"}]}
     payload = request.json
 
     # update file
