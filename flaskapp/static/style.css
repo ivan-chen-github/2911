@@ -149,6 +149,18 @@ li{
 
 /* Card Date
 ----------------------  */
+.date-container{
+  margin-left: auto;
+  display:flex;
+  align-items:center;
+}
+
+.date{
+  color:var(--darktext);
+  display:flex;
+  font-size: 1.5em;
+  font-weight: 600;
+}
 
 /* Card Price
 ----------------------  */
