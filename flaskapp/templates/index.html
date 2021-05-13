@@ -96,16 +96,22 @@
                 <form action="">
                     <input type="text" id="new-sub-name" placeholder="Subscription Name" />
                     <input type="text" id="new-sub-cost" placeholder="Cost" />
-                    <div class="radio-container">
-                        <input type="radio" id="new-sub-monthly" name="occurence" value="monthly" checked="checked">
-                        <label for="new-sub-monthly">Monthly</label>
-                        <input type="radio" id="new-sub-yearly" name="occurence" value="yearly">
-                        <label for="new-sub-yearly">Yearly</label>  
+                    <div class="radio-container">  
+                        <label for="new-sub-monthly">
+                            <input type="radio" id="new-sub-monthly" name="occurence" value="monthly" checked="checked">
+                            Monthly
+                        </label>
+                        <label for="new-sub-yearly">                        
+                            <input type="radio" id="new-sub-yearly" name="occurence" value="yearly">
+                            Yearly
+                        </label>  
                     </div> 
                     
-                    <p>Next Billed Date</p>
-                    <input type="date" id="new-sub-date" name="date">
-                    <input type="button" id="submit-button" value="Add New Subscription" />
+                    <div class="bill-row">
+                        <label for="new-sub-date">Choose Bill Date: </label>
+                        <input type="date" id="new-sub-date" name="date">
+                    </div>
+                    <input type="submit" id="submit-button" value="Add New Subscription" />
                 </form>
             </div>
         </div>
