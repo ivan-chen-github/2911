@@ -105,7 +105,7 @@ function editSubscription(event){
     let card = buttons.parentElement
     let id = card.firstElementChild.firstElementChild.innerHTML
     let name = card.firstElementChild.lastElementChild.innerHTML
-    let cost = card.children[2].firstElementChild.innerHTML
+    let cost = parseFloat(card.children[2].firstElementChild.innerHTML).toFixed(2)
     let period = card.children[2].lastElementChild.innerHTML
     let date = card.children[1].lastElementChild.innerHTML
     editCard = card
@@ -328,37 +328,10 @@ function removeCard(event){
 function removeSub(id){
     for (const e of listOfSubs){
         if(e.id === id){
-<<<<<<< HEAD
             i = listOfSubs.indexOf(e)
             listOfSubs.splice(i,1)
             deleteStorage(id)
         }
     }
-=======
-            let int = e.id
-            console.log(e.id + " " + id)
-            i = listOfSubs.indexOf(e)
-            listOfSubs.splice(i,1)
-
-            // $.post('http://127.0.0.1:5000/delsub', {num: int});
-        }
-    }
-    updateStorage()
-}
-
-/* adds listOfSubs and id to Flask via HTTP POST */
-// INPUT: none
-// OUTPUT: none 
-function updateStorage(){
-    // Send listofSubs to Flask
-    $.ajax({
-        type: 'POST',
-        url: 'http://127.0.0.1:5000/addsub',
-        data: JSON.stringify({subs:listOfSubs}),
-        success: function(data) { alert('data: ' + data); },
-        contentType: "application/json",
-        dataType: 'json'
-    });
->>>>>>> 21a3df03e80e131aba228d6f84c66b3a7abdd49e
 }
 
