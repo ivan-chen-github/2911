@@ -1,9 +1,9 @@
 # Imported libraries
+from json.decoder import JSONDecodeError
 from flask import Flask, render_template, request
 from flask_cors import CORS
-from models.managesub import to_json, rm_json
-import json
-import os
+from models.managesub import to_json, rm_json, rw_json, clear_json
+import json, os, sys
 
 # Flask app
 app = Flask(__name__)
@@ -16,30 +16,9 @@ json_url = os.path.join(site_root, 'subs.json')
 @app.route("/")
 def landing_page():
     """
-    Starting route that displays the main page
+    Display the homepage for the Subscriberfier
     """
     return render_template('index.html')
-
-@app.route("/index.html")
-def home():
-    """
-    Route for returning to homepage
-    """
-    return render_template('index.html')
-
-@app.route("/new.html")
-def new():
-    """
-    Route that displays new subscription page
-    """
-    return render_template('new.html')
-
-# @app.route("note.html")
-# def note():
-#     """
-#     Route that displays notes
-#     """
-#     return render_template('note.html')
 
 @app.route('/addsub', methods=['POST'])
 def addsub():
@@ -47,33 +26,87 @@ def addsub():
     Writes subscription information to subs.json file
     """
     # request data
+    # data should be in format {"subs": [{"id": int, "name": str, "cost": str, "period": str, "date": str}], "id": int}
+    # keys should be ["id", "name", "cost", "period", "date"]
     subdata = request.json
-    
-    # write data to JSON
-    to_json(json_url, subdata)
+
+    try:
+        if (list(subdata.keys())[0]) == 'subs':
+            sublist = list(subdata.values())[0][0]
+            keys = list(sublist.keys())
+            # Check for matching keys
+            if "id" and "name" and "cost" and "period" and "date" in keys:
+                # Write data to file
+                to_json(json_url, subdata)
+                print('data added successfully')
+            else:
+                print(f'Invalid keys. Keys should be:\n["id", "name", "cost", "period", "date"]. Error:\n{keys}')
+        else:
+            print(f'Invalid format. Error:\n{subdata}')
+    except AttributeError:
+        print(f'Invalid attribute. Error:\n{subdata}')
     return f'', 200
 
 @app.route('/delsub', methods=['POST'])
 def delsub():
     """
-    Deletes subscription entry from JSON based on id
+    Deletes subscription entry from JSON based on id.
     """
     # request id
-    id = request.json
-
-    # delete subscription entry
-    rm_json(json_url, id)
+    # id must be int
+    id = request.form['num']
+    try:
+        n = int(id)
+        # Delete subscription from file
+        rm_json(json_url, n)
+        print('subscription deleted successfully')
+    except TypeError:
+        print(f'{id} is invalid. id must be number')
     return f'', 200
 
+@app.route('/upsub', methods=['POST'])
+def upsub():
+    """
+    Updates subs.json with new data
+    """
+    # request new data
+    # data should be in format {'id': int, 'name': str, 'cost': str, 'period': str, 'date': str}
+    correct_keys = ["id", "name", "cost", "period", "date"]
+    payload = request.json
+    
+    try:
+        payload_keys = list(payload.keys())
+        if payload_keys.sort() == correct_keys.sort():
+            # Update file with new subscription data
+            rw_json(json_url, payload)
+            print('subscription updated successfully')
+        else:
+            print(f'Invalid keys. Keys should be:\n["id", "name", "cost", "period", "date"]. Error:\n{payload_keys}')
+    except TypeError:
+        print(f'Invalid format. Error:\n{payload}')
+
+    return f'', 200
 
 @app.route('/data', methods=['GET'])
 def data():
     """
     Hosts subscription data which can be retrieved in web-app
     """
-    with open(json_url) as json_file:
-        data = json.load(json_file)
-    return data
+    try:
+        # Open subs.json
+        with open(json_url) as json_file:
+            data = json.load(json_file)
+        return data
+    except JSONDecodeError:
+        # If cannot JSONDecode, clear subs.json
+        data = clear_json(json_url)
+        return data
+    except FileNotFoundError:
+        # If subs.json doesn't exist, initialize file with {"subs": []}
+        data = {"subs": []}
+        with open(json_url, mode='w+') as f:
+            f.write(json.dumps(data))
+        return data
 
 if __name__ == "__main__":
     app.run()

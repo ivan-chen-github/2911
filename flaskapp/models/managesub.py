@@ -4,7 +4,7 @@ import json
 
 def to_json(file, payload):
     """
-    Takes payload data and writes it to a JSON file. JSON file must be initialized with an empty list first.
+    Takes payload data and writes it to a JSON file. JSON file should be initialized with {"subs": []}
 
     :param: file: file path
     :type: str
@@ -34,13 +34,9 @@ def rm_json(file, id):
         # Load the data as JSON data
         data = json.load(json_file)
         # Get the values inside the JSON data and return the list of data
-        for list in data.values():
-            # For each dict in the list, enumerate it to get the index of each dict
-            for i, d in enumerate(list):
-                # if there is a dictionary with key "id" matching the id parameter
-                if d["id"] == id:
-                    # remove that dictionary from the list of dicts
-                    list.pop(i)
+        for i,sub in enumerate(data["subs"]):
+            if sub["id"] == id:
+                data["subs"].pop(i)
 
     # Open file again as read/write
     with open(file, mode='r+') as f:
@@ -63,46 +59,32 @@ def rw_json(file, payload):
     :type: dict
     
     """
-    # both loops  go into the payload data and extract the id from the dict data
-    for new_list in payload.values():
-        for payload_d in new_list:
-            matched_id = payload_d['id']# this is the id used to match with the current data
-            new_payload_vals = payload_d
-    
-    # initialize the new dict and list to append all changed & unchanged contents
-    new_dict = {}
-    new_values_list = []
-    # Open file as read
-    with open (file, mode='r') as f:
+
+    with open (file, mode='r') as json_file:
         # load the current json data into variable datastore
-        datastore = json.load(f)
+        datastore = json.load(json_file)
         # get the listed values from the key "subs": [all data here]
-        for list in datastore.values():
-            # loops into each dict inside that that list
-            for d in list:
-                # loops into each singular dict key & value in that dict
-                for key, value in d.items():
-                    # if the key is 'id' and the value matches the value of the payload id - it executes
-                    if key == 'id' and value == matched_id:
-                        d = new_payload_vals
-                # appends those dictonary values after each iteration (changed or unchanged)
-                new_values_list.append(d)
-    
-    # this creates a new dict with the same 'subs' as key with the new values
-    new_dict['subs'] = new_values_list
-    # opens the subs.json file and writes the dictonary (same key) with the
-    with open (file, mode='w') as new_json:
-        json.dump(new_dict, new_json)
+        subs_list = datastore["subs"]
+
+        datastore["subs"] = [payload if sub["id"] == payload["id"] else sub for sub in subs_list] 
+
+    with open (file, mode='w') as f:
+        json.dump(datastore,f)
 
 
 def clear_json(file):
     """
-    Opens file and clears all content
+    Opens file and clears subscription entries. Resets file back to {"subs": []}
 
     :param: file: file path
     :type: str
     """
 
+    init_json = {"subs": []}
+
     with open(file, mode='r+') as f:
         f.seek(0)
         f.truncate()
+        f.write(json.dumps(init_json))
+
+    return init_json

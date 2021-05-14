@@ -2,47 +2,120 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
-    <script src="../static/table.js" defer></script>
+    <script src="../static/app.js" defer></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <title>Subscriberfier</title>
 </head>
 
 <body>
 
     <body>
         <div class="container">
-            <div class="main">
-                <h1>Subscriptions</h1>
-                <div class="buttons">
-                    <button id=all-btn>All()</button>
-                    <button id=active-btn>Active()</button>
-                    <button id=cancelled-btn>Cancelled()</button>
-                    <button id=trash-btn>Trash()</button>
-                    <button id=export-btn>Export</button>
+            <!-- Top -->
+            <header class="header-top">
+                <nav class="topbar">
+                    <ul>
+                        <li></li>
+                        <li><h1 id="title">Subscriberfier</h1></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </nav>
+            </header>
+    
+            <!-- Middle -->
+            <div class="content">
+                <div class="middle-container">
+                    <div class="card-container">
+                        <!-- Cards Go Here -->
+                    </div>
+                    <div class="button-container">
+                        <button id="new-sub-button">Add a New Subscription</button>
+                    </div>
                 </div>
 
-                <table>
-                    <tr>
-                        <th>Status(ID)</th>
-                        <th>Subscription</th>
-                        <th>Cost</th>
-                        <th>Next Billed Date</th>
-                        <th></th>
-                    </tr>
-                </table>
             </div>
-            <div class="side-bar">
-                <li><a href="" style="text-decoration: none; color: white;" id=subscriptions>Subscriptions</a></li>
-                <li><a href="new.html" style="text-decoration: none; color: white;" id=newSubscriptions> New
-                        Subscription</a></li>
-                <li><a href="" style="text-decoration: none; color: white;" id=profile>Profile</a></li>
+            
+    
+            <!-- Bottom -->
+            <footer>
+                <ul>
+                    <li class="blank"></li>
+                    <li>
+                        <ul class="links">
+                            <li><a href="https://github.com/sunsled/2911" target="_blank">GitHub</a></li>
+                            <li><a href="https://trello.com/b/3HkCdAbE/subscriberfier" target="_blank">Trello</a></li>
+                            <li><a href="#">Documentation</a></li>
+                        </ul>
+                    </li>
+                    <li id="author">
+                        Created by DevOps13
+                    </li>
+                </ul>
+            </footer>
+        </div>
+
+        <!-- New Sub Popup -->
+        <div class="modal" id="new-sub-modal">
+            
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>New Subscription</h2>
+                    <span class="close-btn">&times;</span>
+                </header>
+                <form id="new-sub-form" action="" >
+                    <input type="text" id="new-sub-name" placeholder="Subscription Name" />
+                    <input type="text" id="new-sub-cost" placeholder="Cost" />
+                    <div class="radio-container">  
+                        <label for="new-sub-monthly">
+                            <input type="radio" id="new-sub-monthly" name="period" value="monthly" checked="checked">
+                            Monthly
+                        </label>
+                        <label for="new-sub-yearly">                        
+                            <input type="radio" id="new-sub-yearly" name="period" value="yearly">
+                            Yearly
+                        </label>  
+                    </div> 
+                    
+                    <div class="bill-row">
+                        <label for="new-sub-date">Choose Bill Date: </label>
+                        <input type="date" id="new-sub-date" name="date">
+                    </div>
+                    <button id="submit-button" type="button">Add New Subscription</button>
+                </form>
             </div>
-
-
-
-            <script src="../static/app.js"></script>
+        </div>
+        <div class="modal" id="edit-modal">
+            
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Edit Subscription</h2>
+                    <span class="close-btn">&times;</span>
+                </header>
+                <form id="new-sub-form" action="" >
+                    <input type="text" id="edit-name" placeholder="Subscription Name" />
+                    <input type="text" id="edit-cost" placeholder="Cost" />
+                    <div class="radio-container">  
+                        <label for="edit-monthly">
+                            <input type="radio" id="edit-monthly" name="period" value="monthly" checked="checked">
+                            Monthly
+                        </label>
+                        <label for="edit-yearly">                        
+                            <input type="radio" id="edit-yearly" name="period" value="yearly">
+                            Yearly
+                        </label>  
+                    </div> 
+                    
+                    <div class="bill-row">
+                        <label for="edit-date">Choose Bill Date: </label>
+                        <input type="date" id="edit-date" name="date">
+                    </div>
+                    <button id="save-button" type="button">Save Changes</button>
+                </form>
+            </div>
+        </div>
     </body>
 
 </html>
