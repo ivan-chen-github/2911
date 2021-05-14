@@ -334,7 +334,7 @@ function saveSubscription(){
     }
     card = editCard
     let name = card.firstElementChild.lastElementChild.innerHTML = editname
-    let cost = card.children[2].firstElementChild.innerHTML = editcost
+    let cost = card.children[2].firstElementChild.innerHTML = '$'+editcost
     let period = card.children[2].lastElementChild.innerHTML = '/' + editperiod
     let date = card.children[1].lastElementChild.innerHTML = editdate
     

@@ -66,7 +66,6 @@ def upsub():
     # request new data
     # pass in sub data as {"subs": [{"cost": int, "date": "date", "id": int, "name": "str", "period": "str"}]}
     payload = request.json
-    print(payload)
     # update file
     rw_json(json_url, payload)
     return f'', 200
