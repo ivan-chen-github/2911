@@ -4,7 +4,7 @@ import json
 
 def to_json(file, payload):
     """
-    Takes payload data and writes it to a JSON file. JSON file must be initialized with an empty list first.
+    Takes payload data and writes it to a JSON file. JSON file should be initialized with {"subs": []}
 
     :param: file: file path
     :type: str
@@ -60,12 +60,6 @@ def rw_json(file, payload):
     
     """
 
-    
-    # initialize the new dict and list to append all changed & unchanged contents
-
-    # Open file as read
-
-
     with open (file, mode='r') as json_file:
         # load the current json data into variable datastore
         datastore = json.load(json_file)
@@ -76,19 +70,21 @@ def rw_json(file, payload):
 
     with open (file, mode='w') as f:
         json.dump(datastore,f)
-    
-    
-        
 
 
 def clear_json(file):
     """
-    Opens file and clears all content
+    Opens file and clears subscription entries. Resets file back to {"subs": []}
 
     :param: file: file path
     :type: str
     """
 
+    init_json = {"subs": []}
+
     with open(file, mode='r+') as f:
         f.seek(0)
         f.truncate()
+        f.write(json.dumps(init_json))
+
+    return init_json
