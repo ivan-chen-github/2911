@@ -354,3 +354,16 @@ function getPeriodEdit(){
 
 /* SORT
 ----------------------------------------------------------------------------*/
+
+function sortCards(){
+    let cardContainer = document.querySelector(".card-container")
+    let cards = cardContainer.children
+    let sorted = false
+    while(!sorted){
+        for (const card of cards){
+            
+        }
+    }
+
+    
+}
