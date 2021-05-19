@@ -1,6 +1,5 @@
 # Imported Libraries
 import json
-# import requests
 
 def to_json(file, payload):
     """
