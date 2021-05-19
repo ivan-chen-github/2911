@@ -19,26 +19,32 @@
                 <nav class="topbar">
                     <ul>
                         <li></li>
-                        <li><h1 id="title">Subscriberfier</h1></li>
+                        <li>
+                            <h1 id="title">Subscriberfier</h1>
+                        </li>
                         <li><a href="#">Login</a></li>
                     </ul>
                 </nav>
             </header>
-    
+
             <!-- Middle -->
             <div class="content">
                 <div class="middle-container">
                     <div class="card-container">
                         <!-- Cards Go Here -->
                     </div>
-                    <div class="button-container">
-                        <button id="new-sub-button">Add a New Subscription</button>
-                    </div>
+    
+                        <div class="button-container">
+                            <button id="new-sub-button">Add a New Subscription</button>
+                            <button id="delete-all-button">Delete All Subscriptions</button>
+                    
+                        </div>
+                    
                 </div>
 
             </div>
-            
-    
+
+
             <!-- Bottom -->
             <footer>
                 <ul>
@@ -59,26 +65,26 @@
 
         <!-- New Sub Popup -->
         <div class="modal" id="new-sub-modal">
-            
+
             <div class="modal-content">
                 <header class="modal-header">
                     <h2>New Subscription</h2>
                     <span class="close-btn">&times;</span>
                 </header>
-                <form id="new-sub-form" action="" >
+                <form id="new-sub-form" action="">
                     <input type="text" id="new-sub-name" placeholder="Subscription Name" />
                     <input type="text" id="new-sub-cost" placeholder="Cost" />
-                    <div class="radio-container">  
+                    <div class="radio-container">
                         <label for="new-sub-monthly">
                             <input type="radio" id="new-sub-monthly" name="period" value="monthly" checked="checked">
                             Monthly
                         </label>
-                        <label for="new-sub-yearly">                        
+                        <label for="new-sub-yearly">
                             <input type="radio" id="new-sub-yearly" name="period" value="yearly">
                             Yearly
-                        </label>  
-                    </div> 
-                    
+                        </label>
+                    </div>
+
                     <div class="bill-row">
                         <label for="new-sub-date">Choose Bill Date: </label>
                         <input type="date" id="new-sub-date" name="date">
@@ -88,26 +94,26 @@
             </div>
         </div>
         <div class="modal" id="edit-modal">
-            
+
             <div class="modal-content">
                 <header class="modal-header">
                     <h2>Edit Subscription</h2>
                     <span class="close-btn">&times;</span>
                 </header>
-                <form id="new-sub-form" action="" >
+                <form id="new-sub-form" action="">
                     <input type="text" id="edit-name" placeholder="Subscription Name" />
                     <input type="text" id="edit-cost" placeholder="Cost" />
-                    <div class="radio-container">  
+                    <div class="radio-container">
                         <label for="edit-monthly">
                             <input type="radio" id="edit-monthly" name="period" value="monthly" checked="checked">
                             Monthly
                         </label>
-                        <label for="edit-yearly">                        
+                        <label for="edit-yearly">
                             <input type="radio" id="edit-yearly" name="period" value="yearly">
                             Yearly
-                        </label>  
-                    </div> 
-                    
+                        </label>
+                    </div>
+
                     <div class="bill-row">
                         <label for="edit-date">Choose Bill Date: </label>
                         <input type="date" id="edit-date" name="date">

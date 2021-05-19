@@ -13,6 +13,7 @@ let closeBtns = document.querySelectorAll(".close-btn")
 let submitBtn = document.querySelector("#submit-button")
 let newSubBtn = document.querySelector("#new-sub-button")
 let saveBtn = document.querySelector("#save-button")
+let deleteAllBtn = document.querySelector("#delete-all-button")
 getServerData()
 
 
@@ -24,6 +25,7 @@ window.addEventListener("click",closeModalWindow)
 submitBtn.addEventListener("click",newSubscription)
 newSubBtn.addEventListener("click",displaySubModal)
 saveBtn.addEventListener("click",saveSubscription)
+deleteAllBtn.addEventListener("click",delAllSub)
 
 /* FUNCTIONS
 ----------------------------------------------------------------------------*/
@@ -45,7 +47,6 @@ function closeModalBtn(){
     editModal.style.display = "none"
 }
 
-
 /* Hides the modal popup if background is clicked*/
 function closeModalWindow(event){
     if(event.target === newSubModal || event.target === editModal){
@@ -53,6 +54,14 @@ function closeModalWindow(event){
         editModal.style.display = "none"
     }
   }
+
+/* Confirmation Box for Delete All Subs*/
+function delAllSub(){
+    var confirmation = confirm("Delete All Subscriptions?")
+    if (confirmation == true){
+        clearSubs()
+    }
+}
 
 /* HTTP REQUESTS
 ----------------------------------------------------------------------------*/
@@ -106,7 +115,14 @@ function updateStorage(sub){
     });
 }
 
-
+/* Clears subs.json file from Flask via HTTP POST */
+// INPUT: none
+// Output: none
+function clearSubs(){
+    $.post('http://127.0.0.1:5000/clear', function(){
+        window.location.reload()
+    });
+}
 
 
 /* CARDS
