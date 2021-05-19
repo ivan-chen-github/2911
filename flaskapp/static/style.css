@@ -249,6 +249,24 @@ li{
   padding-right: 6em;
 }
 
+.button-delete{
+  padding-bottom: 1em;
+  padding-top: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-right: 200px;
+  margin-top: 50px;
+  width: 180px;
+  background-color: var(--button);
+  display:flex;
+  justify-content: flex-end;
+
+}
+
+#button-delete:hover{
+  background-color: var(--buttonhover)
+}
+
 #new-sub-button {
   width: 40%;
   background-color: var(--button);
