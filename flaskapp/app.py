@@ -87,6 +87,17 @@ def upsub():
 
     return f'', 200
 
+@app.route('/clear', methods=['POST'])
+def clear():
+    """
+    Clears subs.json file
+    """
+    # Clear subs.json
+    data = clear_json(json_url)
+    print("subs.json file has been cleared")
+
+    return f'', 200
+
 @app.route('/data', methods=['GET'])
 def data():
     """

@@ -49,6 +49,7 @@ def test_rm_json():
         assert data == {"subs": [], "id": 1}
 
 
+
 def test_clear_json():
     """ test if file is cleared of all contents """
     # clear the file contents

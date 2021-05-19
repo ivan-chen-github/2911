@@ -1,5 +1,4 @@
 __pycache__/
 subs.json
-tests/test.json
-flaskapp/subs.json
-__virtualenv/
+__virtualenv
+.pytest_cache
