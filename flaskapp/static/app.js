@@ -15,6 +15,7 @@ let submitBtn = document.querySelector("#submit-button")
 let newSubBtn = document.querySelector("#new-sub-button")
 let saveBtn = document.querySelector("#save-button")
 let deleteAllBtn = document.querySelector("#delete-all-button")
+let totalCostValue = document.querySelector("#total-cost")
 
 
 getServerData()
@@ -142,7 +143,7 @@ function updateCards(){
     for (const sub of listOfSubs){
         insertCard(sub)
     }
-
+    totalCostValue.innerHTML = totalCost().toFixed(2)
 }
 
 /* Inserts a card to listOfCards according to the given Subscription */
@@ -230,6 +231,7 @@ function newSubscription(){
     insertCard(sub)
     newSubStorage()
     closeModalBtn()
+    totalCostValue.innerHTML = totalCost().toFixed(2)
 }
 
 
@@ -295,6 +297,7 @@ function removeCard(event){
     let id = parseInt(card.firstElementChild.firstElementChild.innerHTML)
     removeSub(id)
     card.remove()
+    totalCostValue.innerHTML = totalCost().toFixed(2)
 }
 
 /* Deletes a subscription from listOfSubs and Flask if they exist*/
@@ -360,7 +363,8 @@ function saveSubscription(){
     let cost = card.children[2].firstElementChild.innerHTML = '$'+editcost
     let period = card.children[2].lastElementChild.innerHTML = '/' + editperiod
     let date = card.children[1].lastElementChild.innerHTML = editdate
-    
+    totalCostValue.innerHTML = totalCost().toFixed(2)
+    closeModalBtn()
 }
 
 /* Checks which radio button is selected and returns appropriate period as string */
