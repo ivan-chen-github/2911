@@ -15,7 +15,6 @@ let newSubBtn = document.querySelector("#new-sub-button")
 let saveBtn = document.querySelector("#save-button")
 let deleteAllBtn = document.querySelector("#delete-all-button")
 getServerData()
-let sortBtn = document.querySelector("#sort-button")
 
 
 /* EVENT LISTENERS
@@ -27,7 +26,10 @@ submitBtn.addEventListener("click",newSubscription)
 newSubBtn.addEventListener("click",displaySubModal)
 saveBtn.addEventListener("click",saveSubscription)
 deleteAllBtn.addEventListener("click",delAllSub)
-sortBtn = document.addEventListener("click",sortCardsName)
+document.querySelector("#sort-name-button").addEventListener("click",sortCardsName)
+document.querySelector("#sort-date-button").addEventListener("click",sortCardsDate)
+document.querySelector("#sort-cost-button").addEventListener("click",sortCardsCost)
+
 
 /* FUNCTIONS
 ----------------------------------------------------------------------------*/
@@ -414,7 +416,7 @@ function sortCardsName(){
     } 
 }
 
-function sortCardsCost(){
+function sortCardsDate(){
     let cardContainer = document.querySelector(".card-container")
     let cards = cardContainer.children
     let unsorted = true
@@ -424,10 +426,11 @@ function sortCardsCost(){
         unsorted = false;
         for (i = 0; i < (cards.length - 1); i++){
             switch_flag = false;
-            let cost1 = parseFloat(cards[i].children[2].firstElementChild.innerHTML.substring(1))
-            let cost2 = parseFloat(cards[i+1].children[2].firstElementChild.innerHTML.substring(1))
+            
+            let date1 = Date.parse(cards[i].children[1].firstElementChild.innerHTML)
+            let date2 = Date.parse(cards[i+1].children[1].firstElementChild.innerHTML)
 
-            if (cost1 > cost2){
+            if (date1 > date2){
                 switch_flag = true;
                 break;
             }
@@ -438,3 +441,37 @@ function sortCardsCost(){
         }
     } 
 }
+
+
+function sortCardsCost(){
+    let cardContainer = document.querySelector(".card-container")
+    let cards = cardContainer.children
+    let unsorted = true
+    let switch_flag = false
+    let i = 0;
+    while(unsorted){
+        unsorted = false;
+        for (i = 0; i < (cards.length - 1); i++){
+            switch_flag = false;
+            
+            let cost1 = parseFloat(cards[i].children[2].firstElementChild.innerHTML.substring(1))
+            let cost2 = parseFloat(cards[i+1].children[2].firstElementChild.innerHTML.substring(1))
+            if (cards[i].children[2].lastElementChild.innerHTML === "/year"){
+                cost1 = cost2 / 12
+            }
+            if (cards[i+1].children[2].lastElementChild.innerHTML === "/year"){
+                cost2 = cost2 / 12
+            }
+
+            if (cost1 < cost2){
+                switch_flag = true;
+                break;
+            }
+        }
+        if (switch_flag) {
+            cardContainer.insertBefore(cards[i + 1], cards[i]);
+            unsorted = true;
+        }
+    } 
+}
+
