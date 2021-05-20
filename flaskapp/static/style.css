@@ -21,6 +21,7 @@ body {
   --button: #286983;
   --buttonhover: #1b485a;
   --delhover: #e74c3c;
+  --addhover: green;
  
   background-color: var(--main);
   
@@ -252,7 +253,7 @@ li{
 }
 
 #delete-all-button {
-  width: 40%;
+  width: 25%;
   background-color: var(--button);
   color: white;
   padding: 14px 20px;
@@ -273,7 +274,7 @@ li{
   color: white;
   padding: 14px 20px;
   margin: 8px;
-  margin-right: 5em;
+  margin-left: 30em;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -281,7 +282,7 @@ li{
 }
 
 #new-sub-button:hover{
-  background-color: var(--buttonhover)
+  background-color: var(--addhover)
 }
 
 
@@ -310,7 +311,7 @@ footer li {
   flex-wrap: wrap;
   font-size: 0.9em;
   padding: 0.8em;
-  margin-left: 10em;
+  margin-left: 8em;
 }
 
 .links a{
