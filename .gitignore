@@ -1,4 +1,5 @@
 __pycache__/
 subs.json
-
-
+__virtualenv
+.pytest_cache
+.coverage
