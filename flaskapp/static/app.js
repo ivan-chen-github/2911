@@ -408,10 +408,10 @@ function sortCardsCost(){
         unsorted = false;
         for (i = 0; i < (cards.length - 1); i++){
             switch_flag = false;
-            let title1 = cards[i].children[0].lastElementChild.innerHTML.toLowerCase()
-            let title2 = cards[i+1].children[0].lastElementChild.innerHTML.toLowerCase()
+            let cost1 = parseFloat(cards[i].children[2].firstElementChild.innerHTML.substring(1))
+            let cost2 = parseFloat(cards[i+1].children[2].firstElementChild.innerHTML.substring(1))
 
-            if (title1 > title2){
+            if (cost1 > cost2){
                 switch_flag = true;
                 break;
             }
