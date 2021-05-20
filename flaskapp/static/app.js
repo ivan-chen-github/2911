@@ -6,6 +6,7 @@ let id = 0
 let editID = 0
 let editCard = null
 
+
 let listOfCards = document.querySelector(".card-container")
 let newSubModal = document.querySelector("#new-sub-modal")
 let editModal = document.querySelector("#edit-modal")
@@ -14,6 +15,8 @@ let submitBtn = document.querySelector("#submit-button")
 let newSubBtn = document.querySelector("#new-sub-button")
 let saveBtn = document.querySelector("#save-button")
 let deleteAllBtn = document.querySelector("#delete-all-button")
+
+
 getServerData()
 
 
