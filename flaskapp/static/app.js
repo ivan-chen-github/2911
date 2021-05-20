@@ -15,6 +15,7 @@ let newSubBtn = document.querySelector("#new-sub-button")
 let saveBtn = document.querySelector("#save-button")
 let deleteAllBtn = document.querySelector("#delete-all-button")
 getServerData()
+let sortBtn = document.querySelector("#sort-button")
 
 
 /* EVENT LISTENERS
@@ -26,6 +27,7 @@ submitBtn.addEventListener("click",newSubscription)
 newSubBtn.addEventListener("click",displaySubModal)
 saveBtn.addEventListener("click",saveSubscription)
 deleteAllBtn.addEventListener("click",delAllSub)
+sortBtn = document.addEventListener("click",sortCardsName)
 
 /* FUNCTIONS
 ----------------------------------------------------------------------------*/
@@ -371,15 +373,52 @@ function getPeriodEdit(){
 /* SORT
 ----------------------------------------------------------------------------*/
 
-function sortCards(){
+function sortCardsName(){
     let cardContainer = document.querySelector(".card-container")
     let cards = cardContainer.children
-    let sorted = false
-    while(!sorted){
-        for (const card of cards){
-            
-        }
-    }
+    let unsorted = true
+    let switch_flag = false
+    let i = 0;
+    while(unsorted){
+        unsorted = false;
+        for (i = 0; i < (cards.length - 1); i++){
+            switch_flag = false;
+            let title1 = cards[i].children[0].lastElementChild.innerHTML.toLowerCase()
+            let title2 = cards[i+1].children[0].lastElementChild.innerHTML.toLowerCase()
 
-    
+            if (title1 > title2){
+                switch_flag = true;
+                break;
+            }
+        }
+        if (switch_flag) {
+            cardContainer.insertBefore(cards[i + 1], cards[i]);
+            unsorted = true;
+        }
+    } 
+}
+
+function sortCardsCost(){
+    let cardContainer = document.querySelector(".card-container")
+    let cards = cardContainer.children
+    let unsorted = true
+    let switch_flag = false
+    let i = 0;
+    while(unsorted){
+        unsorted = false;
+        for (i = 0; i < (cards.length - 1); i++){
+            switch_flag = false;
+            let title1 = cards[i].children[0].lastElementChild.innerHTML.toLowerCase()
+            let title2 = cards[i+1].children[0].lastElementChild.innerHTML.toLowerCase()
+
+            if (title1 > title2){
+                switch_flag = true;
+                break;
+            }
+        }
+        if (switch_flag) {
+            cardContainer.insertBefore(cards[i + 1], cards[i]);
+            unsorted = true;
+        }
+    } 
 }
