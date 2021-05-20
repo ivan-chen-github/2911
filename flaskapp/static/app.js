@@ -370,6 +370,22 @@ function getPeriodEdit(){
     return result
 }
 
+/* TOTAL COST
+----------------------------------------------------------------------------*/
+/* Returns total cost of all subscriptions in the list */
+// INPUT: none
+// OUTPUT: Float
+function totalCost(){
+    let cardContainer = document.querySelector(".card-container")
+    let cards = cardContainer.children
+    let result = 0
+    for (const card of cards){
+        let cost = parseFloat(card.children[2].firstElementChild.innerHTML.substring(1))
+        result += cost
+    }
+    return result
+}
+
 /* SORT
 ----------------------------------------------------------------------------*/
 
