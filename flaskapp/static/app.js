@@ -170,7 +170,7 @@ function createCard(sub){
 
     let header = document.createElement("header")
     header.className = "card-header"
-    header.insertAdjacentHTML("beforeend",'<div class="uid">'+sub.id+'</div><img width="100" src="" alt="sub pic here"><h2 class="card-title">'+sub.name+'</h2>')
+    header.insertAdjacentHTML("beforeend",'<div class="uid">'+sub.id+'</div><h2 class="card-title">'+sub.name+'</h2>')
     card.appendChild(header)
 
     let date = document.createElement("div")

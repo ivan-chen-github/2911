@@ -167,7 +167,8 @@ li{
 
 .card-header{
   display:flex; 
-  align-items:center
+  align-items:center;
+  padding-left: 1em;
 }
 
 .card-title{
