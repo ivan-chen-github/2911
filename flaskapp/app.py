@@ -174,18 +174,18 @@ def upsub():
 
     return f'', 200
 
-@app.route('/clear', methods=['GET'])
+@app.route('/clear', methods=['DELETE'])
 def clear():
     """
     Clears subs.json file
     """
-    # Clear subs.json
-    data = clear_json(json_url)
-    print("subs.json file has been cleared")
-    # if os.path.exists(json_url):
-    #     os.remove(json_url)
-    # else:
-    #     print(f'Subs.json does not exist')
+    # # Clear subs.json
+    # data = clear_json(json_url)
+    # print("subs.json file has been cleared")
+    if os.path.exists(json_url):
+        os.remove(json_url)
+    else:
+        print(f'Subs.json does not exist')
 
     return f'', 200
 

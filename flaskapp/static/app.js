@@ -127,9 +127,16 @@ function updateStorage(sub){
 // INPUT: none
 // Output: none
 function clearSubs(){
-    $.get('http://127.0.0.1:5000/clear', function(){
-        window.location.reload()
+    $.ajax({
+        url: 'http://127.0.0.1:5000/clear',
+        type: 'DELETE',
+        success: function() {
+            window.location.reload()
+        }
     });
+    // $.post('http://127.0.0.1:5000/clear', function(){
+    //     window.location.reload()
+    // });
 }
 
 
