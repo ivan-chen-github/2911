@@ -84,11 +84,12 @@ li{
     'footer footer footer';
 }
 
-/* Styles used for the header section. */
+/* Header
+------------------------------------------------------------------  */
 
 .header-top {
-  grid-area: header; /* Assigns the grid-area 'header' to this class. */
-  z-index: 1 /* Gives the class a z-index of 1. */
+  grid-area: header; 
+  z-index: 1 
 }
 
 .topbar{
@@ -97,7 +98,6 @@ li{
 }
 
 .topbar ul{ 
-  /* makes the list used in the top (navigation) bar a flexbox. */ 
   display: flex;
   flex-wrap: wrap; 
   justify-content: space-between;
@@ -217,7 +217,7 @@ li{
   justify-content:center;
 }
 
-/* Card Buttons
+/* Card Buttons (Right side of Card)
 ----------------------  */
 
 .card-button-container{
@@ -227,8 +227,6 @@ li{
   height: 60px;
   margin-left: 1em;
 }
-
-/* Styles for the edit and delete buttons. */ 
 
 .edit-button, .delete-button{
   font-size: 2em;
@@ -376,8 +374,8 @@ footer li {
   color: var(--label);
 }
 
-/* Modal popups
-----------------------  */
+/* Modal Popups
+------------------------------------------------------------------  */
 
 .modal {
   display: none;
@@ -513,3 +511,25 @@ input[type=radio]{
   from {top:-300px; opacity:0}
   to {top:0; opacity:1}
 }
+
+/* Responsiveness, Mid-Resolution
+------------------------------------------------------------------  */
+
+
+@media screen and (max-width: 1100px){
+  .card-container {
+    width: 700px;
+    height: 75vh;
+    overflow-y: scroll;
+    display: flex;
+    margin: 1rem 3rem 1rem 3rem;
+    flex-direction: column;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 3em;
+  }
+}
+
+
+/* Responsiveness, Mobile
+------------------------------------------------------------------  */
