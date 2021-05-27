@@ -80,7 +80,7 @@ function delAllSub(){
 function newSubStorage(){
     $.ajax({
         type: 'POST',
-        url: 'http://127.0.0.1:5000/addsub',
+        url: 'https://subscriberfier.herokuapp.com/addsub',
         data: JSON.stringify({subs:listOfSubs,id:id}),
         success: function(data) { alert('data: ' + data); },
         contentType: "application/json",
@@ -94,12 +94,12 @@ function newSubStorage(){
 // OUTPUT: none 
 function deleteStorage(id){
     // Send listofSubs to Flask
-    $.post('http://127.0.0.1:5000/delsub',{num:id})
+    $.post('https://subscriberfier.herokuapp.com/delsub',{num:id})
 }
 
 /* HTTTP GET Request for latest data. Updates globals. */ 
 function getServerData(){
-    $.get("http://127.0.0.1:5000/data").done(function(data){
+    $.get("https://subscriberfier.herokuapp.com/data").done(function(data){
         listOfSubs = data["subs"]
         let uid = data["id"]
         if (!uid) id = 0
@@ -115,7 +115,7 @@ function updateStorage(sub){
     // $.post('http://127.0.0.1:5000/upsub',)
     $.ajax({
         type: 'POST',
-        url: 'http://127.0.0.1:5000/upsub',
+        url: 'https://subscriberfier.herokuapp.com/upsub',
         data: JSON.stringify(sub),
         success: function(data) { alert('data: ' + data); },
         contentType: "application/json",
@@ -128,7 +128,7 @@ function updateStorage(sub){
 // Output: none
 function clearSubs(){
     $.ajax({
-        url: 'http://127.0.0.1:5000/clear',
+        url: 'https://subscriberfier.herokuapp.com/clear',
         type: 'DELETE',
         success: function() {
             window.location.reload()
