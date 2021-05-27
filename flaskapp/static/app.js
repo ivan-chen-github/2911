@@ -415,8 +415,8 @@ function sortCardsName(){
         unsorted = false;
         for (i = 0; i < (cards.length - 1); i++){
             switch_flag = false;
-            let title1 = cards[i].children[0].lastElementChild.innerHTML.toLowerCase()
-            let title2 = cards[i+1].children[0].lastElementChild.innerHTML.toLowerCase()
+            let title1 = cards[i].children[0].children[1].innerHTML.toLowerCase()
+            let title2 = cards[i+1].children[0].children[1].innerHTML.toLowerCase()
 
             if (title1 > title2){
                 switch_flag = true;
@@ -441,8 +441,8 @@ function sortCardsDate(){
         for (i = 0; i < (cards.length - 1); i++){
             switch_flag = false;
             
-            let date1 = Date.parse(cards[i].children[1].firstElementChild.innerHTML)
-            let date2 = Date.parse(cards[i+1].children[1].firstElementChild.innerHTML)
+            let date1 = Date.parse(cards[i].children[0].lastElementChild.lastElementChild.innerHTML)
+            let date2 = Date.parse(cards[i+1].children[0].lastElementChild.lastElementChild.innerHTML)
 
             if (date1 > date2){
                 switch_flag = true;
@@ -468,8 +468,8 @@ function sortCardsCost(){
         for (i = 0; i < (cards.length - 1); i++){
             switch_flag = false;
             
-            let cost1 = parseFloat(cards[i].children[2].firstElementChild.innerHTML.substring(1))
-            let cost2 = parseFloat(cards[i+1].children[2].firstElementChild.innerHTML.substring(1))
+            let cost1 = parseFloat(cards[i].children[1].firstElementChild.innerHTML.substring(1))
+            let cost2 = parseFloat(cards[i+1].children[1].firstElementChild.innerHTML.substring(1))
             if (cards[i].children[2].lastElementChild.innerHTML === "/year"){
                 cost1 = cost2 / 12
             }
