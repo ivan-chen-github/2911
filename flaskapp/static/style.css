@@ -24,7 +24,7 @@ body {
   --button: #286983;
   --buttonhover: #3484a3;
   --del: #8b2b21;
-  --addhover: rgb(56, 141, 56);
+  --addhover: rgb(59, 161, 59);
  
   background-color: var(--main);
   font-size: 16px;
@@ -581,6 +581,8 @@ input[type=radio]{
     width: 100vw;
     margin: 1em 0 0 0;
     padding:0;
+    overflow-y: visible;
+    height: auto;
   }
   .date-container{
     left: 39%;
@@ -643,7 +645,6 @@ input[type=radio]{
   .card{
     flex-wrap:wrap;
   }
-
   .card-header{
     flex-direction: column;
     justify-content: flex-end;
