@@ -396,7 +396,7 @@ function totalCost(){
     let cards = cardContainer.children
     let result = 0
     for (const card of cards){
-        let cost = parseFloat(card.children[2].firstElementChild.innerHTML.substring(1))
+        let cost = parseFloat(card.children[0].lastElementChild.firstElementChild.innerHTML.substring(1))
         result += cost
     }
     return result
