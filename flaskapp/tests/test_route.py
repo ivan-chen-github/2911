@@ -123,11 +123,11 @@ def test_delsub_error(app, client):
     assert TypeError
 
 
-def test_clear(app, client):
-    """test if /clear successfully clears subs.json"""
-    # test HTTP response, empty response
-    res = client.post('/clear')
-    # open subs.json and check that file has been reset to {"subs": []}
-    with open(json_url, mode='r') as f:
-        n = json.load(f)
-        assert n == {"subs": []}
+# def test_clear(app, client):
+#     """test if /clear successfully clears subs.json"""
+#     # test HTTP response, empty response
+#     res = client.post('/clear')
+#     # open subs.json and check that file has been reset to {"subs": []}
+#     with open(json_url, mode='r') as f:
+#         n = json.load(f)
+#         assert n == {"subs": []}

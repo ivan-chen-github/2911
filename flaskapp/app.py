@@ -182,6 +182,10 @@ def clear():
     # Clear subs.json
     data = clear_json(json_url)
     print("subs.json file has been cleared")
+    # if os.path.exists(json_url):
+    #     os.remove(json_url)
+    # else:
+    #     print(f'Subs.json does not exist')
 
     return f'', 200
 
