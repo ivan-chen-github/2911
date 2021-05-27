@@ -367,7 +367,7 @@ footer li {
 }
 
 .links a{
-  font-size:1.1em
+  font-size:1.2em
 }
 
 #author {
@@ -525,6 +525,14 @@ input[type=radio]{
     width: 700px;
     margin: 1rem 0 1rem 0;
   }
+  .card:hover~.card{
+    transform: translateY(25px);
+  }
+
+  .card:not(:first-child){
+    margin-top: 15px;
+  }
+
   .top-button-container{
     width: 700px;
     padding-right: 3em
@@ -620,5 +628,43 @@ input[type=radio]{
 
   .links a{
     font-size:1.5em;
+  }
+}
+
+/* Responsiveness, Mobile (Phone)
+------------------------------------------------------------------  */
+
+@media screen and (max-width: 650px){
+  .card-title{
+    font-size: 1.7em;
+  }
+
+  .top-button-container{
+    flex-direction: column;
+    align-items: center;
+  }
+  .total-cost-container{
+    display:flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 1em;
+  }
+  #total-cost{
+    margin-left:auto;
+    margin-right: 1.5em;
+  }
+  .sort-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .sort-title{
+    padding-inline: 1em;
+    margin-right:auto;
+  }
+  .sort-button{
+    padding: 0.8em 0.6em ;
+    width: 23%
   }
 }
