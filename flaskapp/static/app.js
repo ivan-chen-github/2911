@@ -176,7 +176,7 @@ function createCard(sub){
     let date = document.createElement("div")
     date.className = "date-container"
     date.insertAdjacentHTML("beforeend",'<span class="date">'+sub.date+'</span>')
-    card.appendChild(date)
+    header.appendChild(date)
 
     let price = document.createElement("div")
     price.className = "price-container"
