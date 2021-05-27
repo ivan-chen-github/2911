@@ -528,6 +528,8 @@ input[type=radio]{
   .card-container {
     width: 700px;
     margin: 1rem 0 1rem 0;
+    overflow-y: visible;
+    height: auto;
   }
   .card:hover~.card{
     transform: translateY(25px);
@@ -581,8 +583,6 @@ input[type=radio]{
     width: 100vw;
     margin: 1em 0 0 0;
     padding:0;
-    overflow-y: visible;
-    height: auto;
   }
   .date-container{
     left: 39%;
