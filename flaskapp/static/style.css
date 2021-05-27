@@ -9,7 +9,7 @@ that are used across the web-application. */
   padding: 0;
   color: var(--text);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px;
+  
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE 10+ */
 }
@@ -27,7 +27,7 @@ body {
   --addhover: rgb(56, 141, 56);
  
   background-color: var(--main);
-  
+  font-size: 16px;
 }
 
 .uid{
@@ -293,7 +293,7 @@ li{
 /* Bottom Buttons Container
 ------------------------------------------------------------------  */
 
-.button-container{
+.bottom-button-container{
   padding-bottom: 1em;
   width:1000px;
   display:flex; 
@@ -518,48 +518,107 @@ input[type=radio]{
 
 
 @media screen and (max-width: 1100px){
+  body{
+    font-size:15px;
+  }
   .card-container {
     width: 700px;
-    height: 75vh;
     margin: 1rem 0 1rem 0;
-    flex-direction: column;
-    padding-left: 3em;
-    padding-right: 3em;
-    padding-bottom: 3em;
   }
   .top-button-container{
     width: 700px;
     padding-right: 3em
   }
-  .button-container{
-    padding-bottom: 1em;
+  #total-cost{
+    font-size:1.5em;
+    font-weight: 600;
+  }
+  .bottom-button-container{
     width: 700px;
     padding-right: 3em
+  }
+  .modal{
+    padding-top: 200px;
+  }
+  footer > ul{
+    flex-direction: column
+  }
+  .links{
+    margin: auto;
+  }
+
+
+  #author{
+    font-size: 1.3em
   }
 }
 
 
-/* Responsiveness, Mobile
+/* Responsiveness, Tablet
 ------------------------------------------------------------------  */
 
 @media screen and (max-width: 800px){
+  body{
+    font-size:13px;
+  }
+  .middle-container{
+    align-items: center
+  }
   .card-container {
     width: 100vw;
-    height: 75vh;
-    margin: 1rem 0 1rem 0;
-    flex-direction: column;
-    padding-left: 3em;
-    padding-right: 3em;
-    padding-bottom: 3em;
+    margin: 1em 0 0 0;
+    padding:0;
+  }
+  .date-container{
+    left: 39%;
   }
   .top-button-container{
-    width: 700px;
-    justify-content: flex-end;
-    padding-top: 5px;
+    width: 100%;
+    padding-right: 0;
+    font-size: 1.2em;
   }
-  .button-container{
-    padding-bottom: 1em;
-    width: 700px;
-    justify-content: flex-end;
+
+  .total-cost-container{
+    margin-left: 1em;
+  }
+  
+
+  .bottom-button-container{
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+    padding-right: 0;
+    padding-top: 1em;
+    font-size: 1.2em;
+  }
+  #delete-all-button{
+    width: 90%;
+    margin-right: 0;
+  }
+
+  #new-sub-button{
+    width: 90%
+  }
+
+  .card {
+    min-width: 90%;
+    height: 60px;
+    border-radius: 0px;
+    background-color: #f1fbff;
+    box-shadow: 0px 0px 0em rgb(0, 0, 0);
+    display: flex;
+    padding: 1.3em;
+    transition: 0.2s;
+    position:relative;
+  }
+  .card:not(:first-child){
+    margin-top: 1px
+  }
+  .card:hover~.card{
+    transform: translateY(0px);
+  }
+
+  .links a{
+    font-size:1.5em;
   }
 }
