@@ -1,7 +1,9 @@
 /* Stylesheet for Subscriberfier, this includes all the styles and designs 
 that are used across the web-application. */
 
-/* Styles that are used in the overall page. */
+
+/* Overall
+------------------------------------------------------------------  */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +15,6 @@ that are used across the web-application. */
 }
 
 body {
-  /* Color palette for Subscriberfier. */ 
   --main: #283149;
   --text: #e9f4f8;
   --hover: #eec4c4;
@@ -25,10 +26,9 @@ body {
   --delhover: #a02b1e;
   --addhover: rgb(56, 141, 56);
  
-  background-color: var(--main);  /* Sets the background color of the body. */
+  background-color: var(--main);
   
 }
-
 
 .uid{
   display:none;
@@ -39,39 +39,40 @@ body {
   background: transparent; /* Chrome/Safari/Webkit */
 }
 
-/* Styles used with Images. */
+/* Images
+------------------------------------------------------------------  */
 img{
   color:rgb(218, 218, 218)
 }
 
-/* Styles used with the clickable sections. */
+/* Clickables
+------------------------------------------------------------------  */
 
 a{
   text-decoration: none;
 }
 
 a:visited { 
-  color: var(--text); /* Changes color of visited link. */
+  color: var(--text);
 }
 
 a:hover, button:hover {
-  color: var(--hover); /* Changes color of the link and button when hovered.*/
+  color: var(--hover); 
 }
 
-/* Styles used with the buttons in the application. */ 
 button {
   border: none;
   background: none;
   outline: none;
 }
 
-/* Styles used with the list elements in the application. */ 
 li{
   list-style-type: none;
 }
 
 
-/* Creates the grid used as the overall layout of the application. */
+/* Grid
+------------------------------------------------------------------  */
 .container {
   display: grid;
   min-height:100vh;
@@ -105,7 +106,7 @@ li{
 }
 
 .topbar li {
-  padding: 0.8em; /* Adds padding to the list element used in the top bar. */
+  padding: 0.8em;
 }
 
 #title {
@@ -114,23 +115,23 @@ li{
   font-weight:500
 }
 
-/* Styles for the main content section of the web-application. */
+/* Content
+------------------------------------------------------------------  */
 
 .content {
-  grid-area: content; /* Assigns the grid area 'content' to this class. */
-  display: flex; /* Changes the content's display style a flexbox. */ 
+  grid-area: content; 
+  display: flex; 
   justify-content: center;
   align-items: center;
 }
 
 .middle-container{
    
-  display:flex; /* Changes the display of the class to flexbox.*/
+  display:flex; 
   flex-direction: column;
   align-items: flex-end;
 }
 
-/* Styles for the card-container, which displays all the subscriptions. */
 .card-container {
   width: 1000px;
   height: 75vh;
@@ -156,23 +157,19 @@ li{
   position:relative;
 }
 
-/* Style for the cards that are not the first child in the container. */ 
 .card:not(:first-child) {
   margin-top: 35px
 }
 
-/* Style for when a card is hovered over. */
 .card:hover~.card{
   transform: translateY(65px);
 }
 
-/* Style for the card-header. */ 
 .card-header{
-  display:flex; /* Changes the display of the class 'card-header' to flex. */
+  display:flex; 
   align-items:center
 }
 
-/* Styles for the title of each card. */
 .card-title{
   font-size: 2em;
   font-weight: 600;
@@ -180,7 +177,7 @@ li{
   color: var(--darktext)
 }
 
-/* Style for the date of each card. */
+ /* Styles for the container of DATE and PRICE. */
 .date-container{
   margin-left: auto;
   display:flex;
@@ -191,14 +188,12 @@ li{
 }
 
 .date{
-  /* Changes the display of the class 'date' to flex. */ 
   color:var(--darktext);
   display:flex;
   font-size: 1.5em;
   font-weight: 600;
 }
 
-  /* Styles for the classes 'price' and 'period'. */
 .price,.period{
 
   color:var(--darktext);
@@ -213,7 +208,7 @@ li{
   font-size:1em;
 }
 
- /* Styles for the container of the price of each subscription. */
+
 .price-container{
   margin-left:auto;
   display:flex;
@@ -222,11 +217,11 @@ li{
   justify-content:center;
 }
 
-/* Styles used for the card buttons.  */
+/* Card Buttons
+----------------------  */
 
-/* Styles for the container of the buttons. */ 
 .card-button-container{
-  display:flex; /* Changes the display of the container to flex. */ 
+  display:flex; 
   align-items:center;
   border-left: 2px solid lightgrey;
   height: 60px;
@@ -245,24 +240,22 @@ li{
   padding-inline:0.8em;
 }
 
-/* Styles for when the buttons are hovered over. */ 
 .edit-button:hover, .delete-button:hover{
   color:black
 }
 
 
-/* Styles for buttons at the bottom of the page. */
+/* Bottom Buttons Container
+------------------------------------------------------------------  */
 
-/* Styles for the container of the buttons. */
 .button-container{
   padding-bottom: 1em;
   width:1000px;
-  display:flex; /* Changes the display of the container to flex. */
+  display:flex; 
   justify-content: flex-end;
   padding-right: 6em;
 }
 
-/* Styles for the delete all button. */ 
 #delete-all-button {
   width: 49%;
   background-color: var(--button);
@@ -276,7 +269,6 @@ li{
   margin-right:auto;
 }
 
-/* Style for when the delete all buttons is hovered. */
 #delete-all-button:hover{
   background-color: var(--delhover)
 }
@@ -294,24 +286,21 @@ li{
   font-size:1.1em;
 }
 
-/* Style for when the new-sub button is hovered. */
 #new-sub-button:hover{
   background-color: var(--addhover)
 }
 
 
-/* Styles for buttons at the top of the page. */
+/* Top Buttons Container
+------------------------------------------------------------------  */
 
-/* Styles for the container of the buttons. */
 .top-button-container{
   width:1000px;
-  display:flex; /* Changes the display of the container to flex. */
+  display:flex; 
   justify-content: flex-end;
   padding-right: 6em;
   padding-top: 5px;
 }
-
-/* Styles for the sort button. */
 
 .sort-button{
   background-color: var(--button);
@@ -331,7 +320,8 @@ li{
   padding: 10px 20px;
 }
 
-/* Styles for the total cost container. */
+/* Total Cost Container
+----------------------  */
 
 .total-cost-container{
   margin-right:auto;
@@ -347,7 +337,8 @@ li{
   font-size: 1.1em;
 }
 
-/* Styles for the footer of the page. */
+/* Footer
+------------------------------------------------------------------  */
 
 footer {
   grid-area: footer;
@@ -357,7 +348,7 @@ footer {
 }
 
 footer > ul{
-  display: flex; /* Changes the display of the class to flex. */
+  display: flex; 
   flex-wrap: wrap; 
   justify-content: space-between;
   align-items:center
@@ -369,7 +360,7 @@ footer li {
 
 /* Styles for the links. */ 
 .links{
-  display: flex; /* Changes the display of the class to flex. */
+  display: flex; 
   flex-wrap: wrap;
   font-size: 0.9em;
   padding: 0.8em;
@@ -385,9 +376,9 @@ footer li {
   color: var(--label);
 }
 
-/* Styles for the modal pop-ups.  */
+/* Modal popups
+----------------------  */
 
-/* Styles for the container of the modal. */
 .modal {
   display: none;
   position: fixed; 
@@ -401,7 +392,6 @@ footer li {
   
 }
 
-/* Styles for the content of the modal. */
 .modal-content {
   position: relative; 
   background-color: white;
@@ -414,8 +404,6 @@ footer li {
   animation-duration: 0.4s;
 }
 
-/* Styles for the modal header. */
-
 .modal-header{
   display:flex;
   align-items: center;
@@ -427,8 +415,6 @@ footer li {
   font-weight: 600;
   margin:auto;
 }
-
-/* Styles for the form. */ 
 
 form{
   padding: 1em;
@@ -466,8 +452,6 @@ input[type=radio]{
   margin-right:10px;
 }
 
-/* Styles for the submit and save button. */
-
 #submit-button,#save-button {
   width: 100%;
   background-color: var(--button);
@@ -489,7 +473,7 @@ input[type=radio]{
 
 /* Styles for the radio container. */ 
 .radio-container{
-  display:flex; /* Changes the display of the class to flex. */
+  display:flex; 
   flex-direction:column
 }
 .radio-container label{
@@ -498,10 +482,8 @@ input[type=radio]{
   padding-top:0.5em;
 }
 
-/* Styles for the bill row. */
-
 .bill-row{
-  display:flex; /* Changes the display of the class to flex. */
+  display:flex; 
   align-items:center
 }
 
@@ -511,7 +493,6 @@ input[type=radio]{
   padding-left:5px;
 }
 
-/* Styles for the close button. */
 .close-btn {
   float: right; 
   color: gray; 
@@ -520,12 +501,9 @@ input[type=radio]{
   cursor: pointer;
 }
 
-/* Styles for when the close button is hovered over. */
 .close-btn:hover {
   color: rgb(44, 44, 44);
 }
-
-/* Styles for the keyframes. */ 
 
 @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0} 
