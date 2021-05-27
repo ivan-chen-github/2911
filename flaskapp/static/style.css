@@ -22,8 +22,8 @@ body {
   --label: #f1ca89;
   --darktext: rgb(27, 27, 27);
   --button: #286983;
-  --buttonhover: #1b485a;
-  --delhover: #a02b1e;
+  --buttonhover: #3484a3;
+  --del: #8b2b21;
   --addhover: rgb(56, 141, 56);
  
   background-color: var(--main);
@@ -112,7 +112,8 @@ li{
 #title {
   /* Changes font-size and weight of the ID title. */
   font-size: 1.3em;
-  font-weight:500
+  font-weight:500;
+  color: var(--label)
 }
 
 /* Content
@@ -265,6 +266,9 @@ li{
   cursor: pointer;
   font-size:1.1em;
 }
+.sort-button:hover{
+  background-color: var(--buttonhover)
+}
 
 .sort-title{
   font-size: 1.1em;
@@ -303,7 +307,7 @@ li{
 
 #delete-all-button {
   width: 49%;
-  background-color: var(--button);
+  background-color: var(--del);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -315,7 +319,7 @@ li{
 }
 
 #delete-all-button:hover{
-  background-color: var(--delhover)
+  background-color: #b94538
 }
 
 /* Styles for the new-subscription button. */
@@ -569,6 +573,7 @@ input[type=radio]{
   body{
     font-size:13px;
   }
+
   .middle-container{
     align-items: center
   }
