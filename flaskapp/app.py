@@ -2,7 +2,7 @@
 from json.decoder import JSONDecodeError
 from flask import Flask, render_template, request
 from flask_cors import CORS
-from flaskapp.models.managesub import to_json, rm_json, rw_json, clear_json
+from models.managesub import to_json, rm_json, rw_json, clear_json
 import json, os, sys
 
 # Flask app
