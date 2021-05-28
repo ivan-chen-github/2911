@@ -11,7 +11,8 @@ list that is available to the user.
 
 It allows the user to :
   - Add a subscription
-  - Delete a subscription
+  - Delete a single subscription
+  - Delete the entire list of subscriptions
   - Edit a subscription
   - Update a subscription
   - Sort subscriptions
