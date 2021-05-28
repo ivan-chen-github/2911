@@ -4,6 +4,7 @@ from flask import Flask, render_template, request
 from flask_cors import CORS
 import json, os, sys
 
+
 # Functions
 def to_json(file, payload):
     """
@@ -92,14 +93,18 @@ def clear_json(file):
 
     return init_json
 
+
 # Flask app
 app = Flask(__name__)
 CORS(app)
+
 
 # Agnostic filepath for root directory
 site_root = os.path.realpath(os.path.dirname(__file__))
 json_url = os.path.join(site_root, 'subs.json')
 
+
+# Routes
 @app.route("/")
 def landing_page():
     """
@@ -177,7 +182,7 @@ def upsub():
 @app.route('/clear', methods=['DELETE'])
 def clear():
     """
-    Clears subs.json file
+    Deletes subs.json file
     """
     # # Clear subs.json
     # data = clear_json(json_url)

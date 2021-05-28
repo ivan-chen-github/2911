@@ -1,14 +1,24 @@
-# 2911
-ACIT2911 Team 13
+# Subscriberfier
+by - DevOps13 
 
-Dependencies needed to run Flask app:
-* Flask
-  * Install Flask by running the command ```pip install Flask``` in terminal/powershell
-* Flask Cors
-  * Install Flask Cors using the command ```pip install flask flask-cors``` in terminal/powershell
+***
+Subscriberfier is an interactive web app based on Flask for managing
+subscriptions. 
 
-How to run the Flask app:                                                                                               
-* open terminal or powershell
-* cd to the flaskapp folder
-* run command ```python app.py```
-* navigate to ```localhost:5000``` in your browser 
+It manages the user's vast and confusing list of subscriptions that they
+accumulate for various services, keeping a simple and easy to maintain 
+list that is available to the user. 
+
+It allows the user to :
+  - Add a subscription
+  - Delete a subscription
+  - Edit a subscription
+  - Update a subscription
+  - Sort subscriptions
+
+It also helps the user to easily sum up how much money they are spending
+on these subscriptions as well as letting the user know when it is 
+going to be renewed.
+
+*** 
+The subscriberfier app is deployed at : https://subscriberfier.herokuapp.com/
