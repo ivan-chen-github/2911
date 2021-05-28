@@ -331,10 +331,10 @@ function editSubscription(event){
     let buttons = event.target.parentElement
     let card = buttons.parentElement
     let id = card.firstElementChild.firstElementChild.innerHTML
-    let name = card.firstElementChild.lastElementChild.innerHTML
-    let cost = card.children[2].firstElementChild.innerHTML.substring(1)
-    let period = card.children[2].lastElementChild.innerHTML
-    let date = card.children[1].lastElementChild.innerHTML
+    let name = card.firstElementChild.children[1].innerHTML
+    let cost = card.children[1].firstElementChild.innerHTML.substring(1)
+    let period = card.children[1].lastElementChild.innerHTML
+    let date = card.firstElementChild.lastElementChild.lastElementChild.innerHTML
     editCard = card
     
     document.querySelector("#edit-name").value = name
@@ -366,10 +366,10 @@ function saveSubscription(){
         }
     }
     card = editCard
-    let name = card.firstElementChild.lastElementChild.innerHTML = editname
-    let cost = card.children[2].firstElementChild.innerHTML = '$'+editcost
-    let period = card.children[2].lastElementChild.innerHTML = '/' + editperiod
-    let date = card.children[1].lastElementChild.innerHTML = editdate
+    let name = card.firstElementChild.children[1].innerHTML = editname
+    let cost = card.children[1].firstElementChild.innerHTML = '$'+editcost
+    let period = card.children[1].lastElementChild.innerHTML = '/' + editperiod
+    let date = card.firstElementChild.lastElementChild.lastElementChild.innerHTML = editdate
     totalCostValue.innerHTML = totalCost().toFixed(2)
     closeModalBtn()
 }
