@@ -184,9 +184,6 @@ def clear():
     """
     Deletes subs.json file
     """
-    # # Clear subs.json
-    # data = clear_json(json_url)
-    # print("subs.json file has been cleared")
     if os.path.exists(json_url):
         os.remove(json_url)
     else:
