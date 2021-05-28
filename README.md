@@ -2,7 +2,7 @@
 by - DevOps13 
 
 ***
-Subscriberfier is an interactive web based user application for managing
+Subscriberfier is an interactive web app based on Flask for managing
 subscriptions. 
 
 It manages the user's vast and confusing list of subscriptions that they
