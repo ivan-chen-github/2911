@@ -9,7 +9,7 @@ It manages the user's vast and confusing list of subscriptions that they
 accumulate for various services, keeping a simple and easy to maintain 
 list that is available to the user. 
 
-It allows the user :
+It allows the user to :
   - Add a subscription
   - Delete a subscription
   - Edit a subscription
