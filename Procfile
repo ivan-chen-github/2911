@@ -1,1 +1,1 @@
-web: gunicorn -c config/gunicorn.conf.py flaskapp.wgsi:app
+web: gunicorn -c conf/gunicorn.conf.py flaskapp.wgsi:app
