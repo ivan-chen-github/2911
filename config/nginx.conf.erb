@@ -28,9 +28,11 @@ http {
       server_name example.com default_server;
     
 
-      root /app/frontend/build;
-      index index.html;      location / {
-          try_files $uri /$uri index.html;
+      root /flaskapp;
+      index index.html;      
+      
+      location / {
+          template/index.html;
       }     
  
       location ^~ /api {
