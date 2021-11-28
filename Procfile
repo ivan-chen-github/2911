@@ -1,1 +1,1 @@
-web: gunicorn -c config/gunicorn.conf.py flaskapp.app:app
+web: bin/start-nginx gunicorn -c config/gunicorn.conf.py flaskapp.app:app
