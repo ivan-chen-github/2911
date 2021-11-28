@@ -34,7 +34,6 @@ http {
         listen 80 default_server;
         server_name _;
         location / {
-            set_formatted_local_time $upstream "%S";
             if ($upstream ~ 00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15) {
                 set $backend_url https://subscriberfierv2.herokuapp.com;
                 set $backend_host subscriberfierv2.herokuapp.com;
