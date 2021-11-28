@@ -21,7 +21,7 @@ http {
 
    upstream app_server {
       server unix:/tmp/nginx.socket fail_timeout=0;
-      server https://subscriberfier.herokuapp.com;
+      server subscriberfier.herokuapp.com;
    }
 
    server {
