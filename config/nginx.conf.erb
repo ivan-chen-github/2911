@@ -20,7 +20,7 @@ http {
    default_type application/octet-stream;
 
    upstream app_server {
-    #   server unix:/tmp/nginx.socket fail_timeout=0;
+      server unix:/tmp/nginx.socket fail_timeout=0;
       server subscriberfier.herokuapp.com;
    }
 
@@ -33,11 +33,15 @@ http {
       index index.html;      
       
       location / {
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_redirect off;
-        proxy_pass http://app_server/;
+        if ($upstream ~ 00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15) {
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            
+            
+            proxy_set_header Host $http_host;
+            proxy_redirect off;
+            proxy_pass http://app_server/;
+        }
       }             
    }
 }
