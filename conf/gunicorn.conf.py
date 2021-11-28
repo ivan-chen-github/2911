@@ -1,1 +1,5 @@
-bind = '0.0.0.0:80'
+def when_ready(server):
+    open('/tmp/app-initialized', 'w').close()
+
+
+bind = 'unix:///tmp/nginx.socket'
