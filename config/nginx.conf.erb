@@ -1,60 +1,56 @@
 daemon off;
-worker_processes auto;
+#Heroku dynos have at least 4 cores.
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
 events {
-   use epoll;
-   accept_mutex on;
-   worker_connections 1024;
-   multi_accept on;
+	use epoll;
+	accept_mutex on;
+	worker_connections 1024;
 }
 
 http {
-   server_tokens off;
-   gzip on;
-   gzip_min_length 250;
+        gzip on;
+        gzip_comp_level 2;
+        gzip_min_length 512;
 
-   access_log off;
-   error_log logs/nginx/error.log crit;
+	server_tokens off;
 
-   include mime.types;
-   default_type application/octet-stream;
+	log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
+	access_log logs/nginx/access.log l2met;
+	error_log logs/nginx/error.log;
 
-   upstream app_server {
-      server unix:/tmp/nginx.socket fail_timeout=0;
-   }
+	include mime.types;
+	default_type application/octet-stream;
+	sendfile on;
 
-   server {
-      listen <%= ENV["PORT"] %>;
-      server_name example.com default_server;
-    
+	#Must read the body in 5 seconds.
+	client_body_timeout 5;
 
-      root /app/frontend/build;
-      index index.html;      location / {
-          try_files $uri /$uri index.html;
-      }     
- 
-      location ^~ /api {
-         proxy_set_header X-Real-IP $remote_addr;
-         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-         proxy_set_header Host $server_name;
-         proxy_redirect off;
-         proxy_pass http://app_server;
-      }
-      location ^~ /admin {
-         proxy_set_header Host $http_host;
-         proxy_set_header X-Real-IP $remote_addr;
-         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-         proxy_set_header X-Forwarded-Host $http_host;
-         proxy_redirect off;
-         proxy_pass http://app_server;
-      }
-        
-      # static
-      location ~* \.(jpg|jpeg|png|gif|ico|svg|otf)$ {
-            expires 30d;
+	upstream app_server {
+		server unix:/tmp/nginx.socket fail_timeout=0;
+ 	}
+
+    server {
+        listen 80 default_server;
+        server_name _;
+        location / {
+            set_formatted_local_time $upstream "%S";
+            if ($upstream ~ 00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15) {
+                set $backend_url https://subscriberfierv2.herokuapp.com;
+                set $backend_host subscriberfierv2.herokuapp.com;
+            }
+            if ($upstream ~ 16|17|18|19|20|21|22|23|24|25|26|27|28|29|30) {
+                set $backend_url https://subscriberfier.herokuapp.com;
+                set $backend_host subscriberfier.herokuapp.com;
+            }
+            proxy_pass $backend_url;
+            proxy_set_header Host $backend_host;
         }
-        location ~* \.(css|js)$ {
-            expires 7d;
+        location /this_is_ip_resolver_just_ignore_it_1 {
+            proxy_pass https://subscriberfierv2.herokuapp.com/;
         }
-   }
+        location /this_is_ip_resolver_just_ignore_it_2 {
+            proxy_pass https://subscriberfier.herokuapp.com/;
+        }
+    }
 }
